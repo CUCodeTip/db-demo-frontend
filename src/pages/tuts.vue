@@ -6,7 +6,7 @@ useHead({
 
 const fruits = ['apple', 'pineapple', 'banana']
 
-const name = ref('Arm')
+const name = ref('Arm') // defaults
 
 const count = ref<number>(0) // number is for typeScript not required in this case
 const clickMe = () => {
@@ -59,12 +59,12 @@ const countDouble = computed(() => count.value * 2)
       </p>
     </section>
 
-    <!-- binding input with a varible -->
+    <!-- binding input with a variable -->
     <section class="hi-yo">
       <h2 class="subtopic">
         Binding value with an input field
       </h2>
-      <p>Your name is <span class="text-red-400">{{ name }}</span></p>
+      <p>Your name is <span class="text-red-400">{{ name || '???' }}</span></p>
       <input v-model="name" type="text" class="bg-blue-300 p-3 text-black rounded" />
     </section>
 
