@@ -1,4 +1,34 @@
-# git clone แล้ว เปิด commandline แล้ว run `pnpm i` แต่ถ้ายังไม่มี pnpm ให้ลงก่อนด้วย `npm i -g pnpm`
+## Usage
+
+git clone แล้ว เปิด commandline แล้ว run
+
+```
+pnpm i
+``` 
+
+แต่ถ้ายังไม่มี pnpm ให้ลงก่อนด้วย
+
+```
+npm i -g pnpm
+```
+
+### Development
+
+Just run and visit http://localhost:3333
+
+```bash
+pnpm dev
+```
+
+### Build
+
+To build the App, run
+
+```bash
+pnpm build
+```
+
+And you will see the generated file in `dist` that ready to be served.
 
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/11247099/111864893-a457fd00-899e-11eb-9f05-f4b88987541d.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
@@ -151,26 +181,6 @@ When you use this template, try follow the checklist to update your info properl
 - [ ] Clean up the READMEs and remove routes
 
 And, enjoy :)
-
-## Usage
-
-### Development
-
-Just run and visit http://localhost:3333
-
-```bash
-pnpm dev
-```
-
-### Build
-
-To build the App, run
-
-```bash
-pnpm build
-```
-
-And you will see the generated file in `dist` that ready to be served.
 
 ### Deploy on Netlify
 
