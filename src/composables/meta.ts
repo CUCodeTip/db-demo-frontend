@@ -9,7 +9,7 @@ export const setMetadata = (options: MetaDataOptions = {}) => {
   const {
     title = 'DB Demo CodeTip',
     description = 'Hello there!',
-    image = '/landing_preview.jpeg', // for og:image and twitter:image
+    image = '/landing_preview.jpg', // for og:image and twitter:image
     siteName = 'DB Demo CodeTip',
   } = options
   return useHead({
