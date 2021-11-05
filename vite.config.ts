@@ -104,9 +104,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
-        theme_color: '#ffffff',
+        name: 'CodeTip - DB Demo',
+        short_name: 'DB Demo',
+        theme_color: '#1b1b1b',
         icons: [
           {
             src: '/pwa-192x192.png',
