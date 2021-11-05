@@ -22,9 +22,12 @@ const countDouble = computed(() => count.value * 2)
 
 <template>
   <main class="space-y-8">
-    <h1 class="font-bold text-5xl">
-      Basic Usage 😉
-    </h1>
+    <header>
+      <h1 class="font-bold text-5xl">
+        Basic Usage 😉
+      </h1>
+      <p>See <code>/pages/tuts.vue</code></p>
+    </header>
 
     <!-- iterate through values -->
     <section class="hi-yo">
@@ -49,7 +52,10 @@ const countDouble = computed(() => count.value * 2)
         Show this if v-if is true
       </p>
       <p v-else>
-        This never renders
+        This never renders.
+      </p>
+      <p v-show="false">
+        This as well.
       </p>
     </section>
 
@@ -80,7 +86,7 @@ const countDouble = computed(() => count.value * 2)
 <style scoped>
 /* See https://windicss.org/ for these weird text-white border rounded ... thingy */
 .hi-yo {
-  @apply border rounded-lg p-5;
+  @apply border rounded-lg p-5 hover:(border-pink-300);
 }
 
 /* You can just use normal CSS here */
