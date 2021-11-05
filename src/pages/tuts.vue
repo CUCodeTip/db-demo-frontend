@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import { setMetadata } from '~/composables'
 // import { ref } from 'vue' // basic vue imports are unneccesary
-useHead({
-  title: 'Basic Usage of vue',
-})
+
+setMetadata({ title: 'Basic Usage of vue' })
 
 const fruits = ['apple', 'pineapple', 'banana']
-
-const name = ref('Arm') // defaults
+const name = ref('Arm') // default
 
 const count = ref<number>(0) // number is for typeScript not required in this case
 const clickMe = () => {
