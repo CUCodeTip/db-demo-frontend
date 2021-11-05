@@ -1,37 +1,45 @@
 <script setup lang="ts">
+import { TransitionPresets } from '@vueuse/core'
 import { setMetadata } from '~/composables'
 // import { ref } from 'vue' // basic vue imports are unneccesary
 
 setMetadata({ title: 'Basic Usage of vue' })
 
-const fruits = ['apple', 'pineapple', 'banana']
-const name = ref('Arm') // default
+const fruits = ref(['apple', 'pineapple', 'banana'])
+const name = ref('Arm')
 
-const count = ref<number>(0) // number is for typeScript not required in this case
-const clickMe = () => {
-  count.value++ // .value is needed here to access or modify the value
+const count = ref(0)
+// When the value of count changes, count3 updates automatically.
+const count3 = computed(() => count.value ** 3)
+const count3ToRender = useTransition(count3, {
+  transition: TransitionPresets.easeInSine,
+}) // transition in value
+
+const incrementBy = (amount: number) => {
+  count.value += amount // .value is needed here to access or modify the value
 }
-// this runs everytime the value of count changes
-watch(count, () => {
-  if (count.value % 5 === 0) alert('count is now a multiple of 5')
+
+const { idle } = useIdle(3000)
+const emoji = ref('😀')
+watch(idle, () => {
+  if (idle.value) emoji.value = '😴'
+  else emoji.value = '😀'
 })
-// If the value of count changes, countDouble also changes.
-const countDouble = computed(() => count.value * 2)
 </script>
 
 <template>
   <main class="space-y-8">
     <header>
       <h1 class="font-bold text-5xl">
-        Basic Usage 😉
+        Basic Usage {{ emoji }}
       </h1>
       <p>See <code>/pages/tuts.vue</code></p>
     </header>
 
     <!-- iterate through values -->
-    <section class="hi-yo">
+    <article class="hi-yo">
       <h2 class="subtopic">
-        iterate through values
+        Iterating through values
       </h2>
       <!-- value for :key must be unique -->
       <p>const fruits = {{ fruits }}</p>
@@ -40,10 +48,10 @@ const countDouble = computed(() => count.value * 2)
           😎 {{ fruit }}
         </li>
       </ul>
-    </section>
+    </article>
 
     <!-- conditional rendering -->
-    <section class="hi-yo">
+    <article class="hi-yo">
       <h2 class="subtopic">
         Conditional rendering
       </h2>
@@ -56,29 +64,38 @@ const countDouble = computed(() => count.value * 2)
       <p v-show="false">
         This as well.
       </p>
-    </section>
+    </article>
+
+    <!-- event handling -->
+    <article class="hi-yo">
+      <h2 class="subtopic">
+        Event handling
+      </h2>
+      <p>count = {{ count }}</p>
+      <p>count<span>&#179;</span> = {{ Math.round(count3ToRender) }}</p>
+      <!-- clickMe runs when this button is clicked (@click) -->
+      <button class="btn mt-5 mr-3" @click="incrementBy(1)">
+        +1
+      </button>
+      <button class="btn mt-5 mr-3" @click="incrementBy(5)">
+        +5
+      </button>
+      <button class="btn" @click="count = 0">
+        Reset
+      </button>
+    </article>
 
     <!-- binding input with a variable -->
-    <section class="hi-yo">
+    <article class="hi-yo">
       <h2 class="subtopic">
         Binding value with an input field
       </h2>
       <p>Your name is <span class="text-red-400">{{ name || '???' }}</span></p>
-      <input v-model="name" type="text" class="bg-blue-300 p-3 text-black rounded" />
-    </section>
-
-    <!-- event handling -->
-    <section class="hi-yo">
-      <h2 class="subtopic">
-        Event handling
-      </h2>
-      <p>count is {{ count }}</p>
-      <p>count double is {{ countDouble }}</p>
-      <!-- clickMe runs when this button is clicked (@click) -->
-      <button class="btn mt-5" @click="clickMe">
-        Click Me!
+      <input v-model="name" type="text" class="bg-blue-300 py-1 px-3 mr-3 text-black rounded" />
+      <button class="btn mt-2" :disabled="!name" @click="fruits.push(name + '???')">
+        ???
       </button>
-    </section>
+    </article>
   </main>
 </template>
 
@@ -88,7 +105,7 @@ const countDouble = computed(() => count.value * 2)
   @apply border rounded-lg p-5 hover:(border-pink-300);
 }
 
-/* You can just use normal CSS here */
+/* You can just use normal CSS here as well */
 .subtopic {
   font-weight: 600;
   font-size: 1.125rem; /* 18px */
