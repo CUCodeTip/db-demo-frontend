@@ -1,68 +1,92 @@
 <script setup lang="ts">
+// import { ref } from 'vue' // basic vue imports are unneccesary
+useHead({
+  title: 'Basic Usage of vue',
+})
+
 const fruits = ['apple', 'pineapple', 'banana']
 
 const name = ref('Arm')
 
-const count = ref<number>(0) // number is for typeScript
+const count = ref<number>(0) // number is for typeScript not required in this case
 const clickMe = () => {
-  count.value++ // .value is needed here
+  count.value++ // .value is needed here to access or modify the value
 }
 // this runs everytime the value of count changes
 watch(count, () => {
-  if (count.value % 5 === 0) alert('Hi')
+  if (count.value % 5 === 0) alert('count is now a multiple of 5')
 })
+// If the value of count changes, countDouble also changes.
+const countDouble = computed(() => count.value * 2)
 </script>
 
 <template>
-  <main class="mx-20">
+  <main class="space-y-8">
+    <h1 class="font-bold text-5xl">
+      Basic Usage 😉
+    </h1>
+
     <!-- iterate through values -->
-    <h2 class="font-bold">
-      iterate through values
-    </h2>
-    <section class="mb-15 border">
-      <ul v-for="f in fruits" :key="f">
-        <li class="text-red-500">
-          {{ f }}
+    <section class="hi-yo">
+      <h2 class="subtopic">
+        iterate through values
+      </h2>
+      <!-- value for :key must be unique -->
+      <p>const fruits = {{ fruits }}</p>
+      <ul v-for="fruit in fruits" :key="fruit">
+        <li class="text-red-400">
+          😎 {{ fruit }}
         </li>
       </ul>
     </section>
 
     <!-- conditional rendering -->
-    <h2 class="font-bold">
-      Conditional rendering
-    </h2>
-    <section class="mb-15 border">
-      <h1 v-if="true">
+    <section class="hi-yo">
+      <h2 class="subtopic">
+        Conditional rendering
+      </h2>
+      <p v-if="true /* any valid js expression */">
         Show this if v-if is true
-      </h1>
-      <h1 v-else>
+      </p>
+      <p v-else>
         This never renders
-      </h1>
+      </p>
     </section>
 
     <!-- binding input with a varible -->
-    <h2 class="font-bold">
-      Binding value with an input field
-    </h2>
-    <section class="mb-15 border">
-      <h3>Your name is <span class="text-red-500">{{ name }}</span></h3>
-      <input v-model="name" type="text" class="bg-blue-300 p-3" />
+    <section class="hi-yo">
+      <h2 class="subtopic">
+        Binding value with an input field
+      </h2>
+      <p>Your name is <span class="text-red-400">{{ name }}</span></p>
+      <input v-model="name" type="text" class="bg-blue-300 p-3 text-black rounded" />
     </section>
 
     <!-- event handling -->
-    <h2 class="font-bold">
-      Event handling
-    </h2>
-    <section>
-      <h3>count is {{ count }}</h3>
+    <section class="hi-yo">
+      <h2 class="subtopic">
+        Event handling
+      </h2>
+      <p>count is {{ count }}</p>
+      <p>count double is {{ countDouble }}</p>
       <!-- clickMe runs when this button is clicked (@click) -->
-      <button class="bg-purple-400 p-3 rounded-full" @click="clickMe">
+      <button class="btn mt-5" @click="clickMe">
         Click Me!
       </button>
     </section>
   </main>
 </template>
 
-<style>
+<style scoped>
+/* See https://windicss.org/ for these weird text-white border rounded ... thingy */
+.hi-yo {
+  @apply border rounded-lg p-5;
+}
 
+/* You can just use normal CSS here */
+.subtopic {
+  font-weight: 600;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
 </style>
