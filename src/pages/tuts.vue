@@ -80,7 +80,7 @@ watch(idle, () => {
       <button class="btn mt-5 mr-3" @click="incrementBy(5)">
         +5
       </button>
-      <button class="btn" @click="count = 0">
+      <button class="btn" :disabled="!count" @click="count = 0">
         Reset
       </button>
     </article>
