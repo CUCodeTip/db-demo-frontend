@@ -5,8 +5,9 @@ import { setMetadata } from '~/composables'
 
 setMetadata({ title: 'Basic Usage of vue' })
 
-const fruits = ref(['apple', 'pineapple', 'banana'])
+const fruits = ref(new Set(['apple', 'pineapple', 'banana']))
 const name = ref('Arm')
+const isNameInFruits = computed(() => fruits.value.has(name.value))
 
 const count = ref(0)
 // When the value of count changes, count3 updates automatically.
@@ -100,9 +101,13 @@ watch(idledFor, () => {
       <h2 class="subtopic">
         Binding value with an input field
       </h2>
-      <p>Your name is <span class="text-red-400">{{ name || '???' }}</span></p>
+      <p>Your name is <span class="text-red-400">{{ name || '???' }}</span>.</p>
       <input v-model="name" type="text" class="bg-blue-300 py-1 px-3 mr-3 text-black rounded" />
-      <button class="btn mt-2" :disabled="!name" @click="fruits.push(name + '???')">
+      <button
+        class="btn mt-2"
+        :disabled="!name || isNameInFruits"
+        @click="fruits.add(name)"
+      >
         ???
       </button>
     </article>
