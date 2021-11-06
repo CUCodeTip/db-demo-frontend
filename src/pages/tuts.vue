@@ -19,19 +19,21 @@ const incrementBy = (amount: number) => {
   count.value += amount // .value is needed here to access or modify the value
 }
 
-const { idle, lastActive } = useIdle(3000, { initialState: true })
+const { lastActive } = useIdle(3000, { initialState: true })
 const emoji = ref('😴')
 const now = useTimestamp()
 const idledFor = computed(() =>
   Math.floor((now.value - lastActive.value) / 1000),
 )
-watch(idle, () => {
-  if (idle.value) emoji.value = '😴'
-  else emoji.value = '😀'
-})
 watch(idledFor, () => {
-  if (idledFor.value > 9 && idledFor.value < 60) emoji.value = '💀'
-  else if (idledFor.value >= 60) emoji.value = '👻'
+  if (idledFor.value < 7) emoji.value = '😀'
+  else if (idledFor.value < 13) emoji.value = '😐'
+  else if (idledFor.value < 18) emoji.value = '🥱'
+  else if (idledFor.value < 50) emoji.value = '😴'
+  else if (idledFor.value < 55) emoji.value = '😓'
+  else if (idledFor.value < 57) emoji.value = '😖'
+  else if (idledFor.value < 70) emoji.value = '💀'
+  else emoji.value = '👻'
 })
 </script>
 
