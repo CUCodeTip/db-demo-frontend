@@ -56,7 +56,17 @@ interface MemeAPIRes {
   ups: number
   preview: string[]
 }
-const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokuapp.com/gimme').json<MemeAPIRes>()
+const seenMemeUrls = new Set<string>()
+const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokuapp.com/gimme', {
+  afterFetch: (ctx) => {
+    if (seenMemeUrls.has(ctx.data.postLink))
+      nextMeme()
+    else
+      seenMemeUrls.add(ctx.data.postLink)
+    return ctx
+  },
+}).json<MemeAPIRes>()
+
 </script>
 
 <template>
