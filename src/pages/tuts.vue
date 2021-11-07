@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { TransitionPresets } from '@vueuse/core'
 import { setMetadata } from '~/composables'
+import useIdleEmoji from '~/composables/idleEmoji'
 // import { ref } from 'vue' // basic vue imports are unneccesary
+
+const { emoji } = useIdleEmoji()
 
 setMetadata({ title: 'Basic Usage of vue' })
 
@@ -19,23 +22,6 @@ const count3ToRender = useTransition(count3, {
 const incrementBy = (amount: number) => {
   count.value += amount // .value is needed here to access or modify the value
 }
-
-const { lastActive } = useIdle(3000, { initialState: true })
-const emoji = ref('😴')
-const now = useTimestamp()
-const idledFor = computed(() =>
-  Math.floor((now.value - lastActive.value) / 1000),
-)
-watch(idledFor, () => {
-  if (idledFor.value < 7) emoji.value = '😀'
-  else if (idledFor.value < 13) emoji.value = '😐'
-  else if (idledFor.value < 18) emoji.value = '🥱'
-  else if (idledFor.value < 50) emoji.value = '😴'
-  else if (idledFor.value < 55) emoji.value = '😓'
-  else if (idledFor.value < 57) emoji.value = '😖'
-  else if (idledFor.value < 70) emoji.value = '💀'
-  else emoji.value = '👻'
-})
 </script>
 
 <template>
