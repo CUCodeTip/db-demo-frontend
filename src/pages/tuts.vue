@@ -179,6 +179,7 @@ const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokua
           </button>
           <p>Title: <a :href="memeData?.postLink" class="font-semibold text-blue-400 hover:text-blue-700" target="_blank">{{ memeData?.title }}</a></p>
           <p>Upvotes: {{ memeData?.ups }}</p>
+          <p>Subreddit: {{ memeData?.subreddit }}</p>
           <img :src="memeData?.url" :alt="memeData?.title">
         </section>
       </div>
