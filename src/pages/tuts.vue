@@ -33,8 +33,8 @@ interface Country {
   probability: number
 }
 interface NationalityAPIRes {
-  name: string
-  country: Country[]
+  name?: string
+  country?: Country[]
   error?: string
 }
 const nationalityUrl = computed(() => `https://api.nationalize.io/?name=${name.value}`)
