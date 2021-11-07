@@ -22,6 +22,41 @@ const count3ToRender = useTransition(count3, {
 const incrementBy = (amount: number) => {
   count.value += amount // .value is needed here to access or modify the value
 }
+
+// API calls
+// see https://vueuse.org/core/useFetch/ for reactive Fetch API
+// You can use typical fetch here but it's not reactive or self-changing in states
+
+// predict nationality api
+interface Country {
+  country_id: string
+  probability: number
+}
+interface NationalityAPIRes {
+  name: string
+  country: Country[]
+  error?: string
+}
+const nationalityUrl = computed(() => `https://api.nationalize.io/?name=${name.value}`)
+const {
+  data: nationality,
+  statusCode: nationalitySC,
+} = useFetch(nationalityUrl, { refetch: true }).json<NationalityAPIRes>()
+const httpCatUrl = computed(() => `https://http.cat/${nationalitySC.value ?? 425}.jpg`)
+
+// random meme from reddit api
+interface MemeAPIRes {
+  postLink: string
+  subreddit: string
+  title: string
+  url: string
+  nsfw: boolean
+  spoiler: boolean
+  author: string
+  ups: number
+  preview: string[]
+}
+const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokuapp.com/gimme').json<MemeAPIRes>()
 </script>
 
 <template>
@@ -88,7 +123,7 @@ const incrementBy = (amount: number) => {
         Binding value with an input field
       </h2>
       <p>Your name is <span class="text-red-400">{{ name || '???' }}</span>.</p>
-      <input v-model="name" type="text" class="bg-blue-300 py-1 px-3 mr-3 text-black rounded" />
+      <input v-model="name" type="text" class="inpt mr-3 text-black rounded" />
       <button
         class="btn mt-2"
         :disabled="!name || isNameInFruits"
@@ -96,6 +131,47 @@ const incrementBy = (amount: number) => {
       >
         ???
       </button>
+    </article>
+
+    <!-- data fetching -->
+    <article class="hi-yo">
+      <h2 class="subtopic mb-5">
+        Data fetching/ API calls
+      </h2>
+
+      <div class="space-y-3">
+        <!-- predict nationality -->
+        <section class="hi-yo">
+          <h3 class="font-semibold">
+            Nationality
+          </h3>
+          <div v-if="nationality && !nationality.error">
+            <ul v-for="nat in nationality.country" :key="nat.country_id">
+              <li>{{ nat.country_id }} - {{ Math.round(nat.probability * 100) }}%</li>
+            </ul>
+          </div>
+          <div v-else>
+            {{ nationality?.error }}
+          </div>
+          <hr>
+          <input v-model="name" type="text" class="inpt mr-3 text-black rounded" />
+          <span class="block">status code: {{ nationalitySC }}</span>
+          <img v-show="httpCatUrl" :src="httpCatUrl" alt="status code cat" class="w-1/4">
+        </section>
+
+        <!-- random meme -->
+        <section class="hi-yo">
+          <h3 class="font-semibold">
+            Reddit Memes
+          </h3>
+          <button class="btn" @click="nextMeme()">
+            Next Meme
+          </button>
+          <p>Title: <a :href="memeData?.postLink" class="font-semibold text-blue-400 hover:text-blue-700" target="_blank">{{ memeData?.title }}</a></p>
+          <p>Upvotes: {{ memeData?.ups }}</p>
+          <img :src="memeData?.url" :alt="memeData?.title">
+        </section>
+      </div>
     </article>
   </main>
 </template>

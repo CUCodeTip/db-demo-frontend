@@ -35,6 +35,13 @@ html.dark {
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
 
+.inpt {
+  @apply px-3 py-1 rounded inline-block
+    bg-teal-200 text-gray-700
+    hover:bg-teal-300
+    disabled:cursor-default disabled:bg-gray-200 disabled:opacity-50;
+}
+
 .icon-btn {
   @apply inline-block cursor-pointer select-none
     opacity-75 transition duration-200 ease-in-out
