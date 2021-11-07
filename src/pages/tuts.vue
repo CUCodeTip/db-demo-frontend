@@ -166,7 +166,7 @@ const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokua
           <hr>
           <input v-model="name" type="text" class="inpt mr-3 text-black rounded" />
           <span class="block">status code: {{ nationalitySC }}</span>
-          <img v-show="httpCatUrl" :src="httpCatUrl" alt="status code cat" class="w-1/4">
+          <img v-show="httpCatUrl" :src="httpCatUrl" alt="status code cat">
         </section>
 
         <!-- random meme -->
