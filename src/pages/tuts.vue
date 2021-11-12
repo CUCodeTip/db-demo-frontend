@@ -200,3 +200,8 @@ const { data: memeData, execute: nextMeme } = useFetch('https://meme-api.herokua
   line-height: 1.75rem; /* 28px */
 }
 </style>
+
+<route lang="yaml">
+meta:
+  layout: tuts
+</route>
