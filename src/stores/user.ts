@@ -1,32 +1,27 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', () => {
-  /**
-   * Current named of the user.
-   */
-  const savedName = ref('')
-  const previousNames = ref(new Set<string>())
+  const registeredUsers = new Set([
+    'arskiir', 'user1', 'user2', 'user3',
+  ])
 
-  const usedNames = computed(() => Array.from(previousNames.value))
-  const otherNames = computed(() => usedNames.value.filter(name => name !== savedName.value))
+  const loggedInUser = ref('')
 
   /**
-   * Changes the current name of the user and saves the one that was used
-   * before.
-   *
-   * @param name - new name to set
+   * Login the user to user store
+   * @returns true if success else false
    */
-  function setNewName(name: string) {
-    if (savedName.value)
-      previousNames.value.add(savedName.value)
-
-    savedName.value = name
+  const login = (username: string) => {
+    if (registeredUsers.has(username)) {
+      loggedInUser.value = username
+      return true
+    }
+    return false
   }
 
   return {
-    setNewName,
-    otherNames,
-    savedName,
+    loggedInUser,
+    login,
   }
 })
 
