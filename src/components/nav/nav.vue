@@ -5,21 +5,23 @@ import { useUserStore } from '~/stores/user'
 const { emoji } = useIdleEmoji()
 const uStore = useUserStore()
 
+const usernameInput = ref<null | HTMLInputElement>(null)
 const username = ref('')
 const buttonDisabled = computed(
   () => !username.value
     || (uStore.loggedInUser !== '' && uStore.loggedInUser === username.value),
 )
+
 const login = () => {
   if (buttonDisabled.value) return
   if (uStore.login(username.value)) {
     username.value = ''
+    usernameInput.value?.blur()
     return
   }
   alert('Login failed')
 }
 
-const usernameInput = ref<null | HTMLInputElement>(null)
 onMounted(() => usernameInput.value?.focus())
 </script>
 
