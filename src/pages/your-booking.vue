@@ -1,7 +1,7 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <div>
-  </div>
+  <h2>This is from your booking page</h2>
 </template>

@@ -1,5 +1,28 @@
+<script setup lang="ts">
+import { useControlStore } from '~/stores/control'
+import { useUserStore } from '~/stores/user'
+
+const control = useControlStore()
+const uStore = useUserStore()
+</script>
+
 <template>
-  <div class="min-h-full bg-gray-900 text-white px-5 pt-5 sm:(px-20) md:(pt-10) ">
-    <router-view />
+  <div
+    class="
+  min-h-full
+  bg-gray-900 text-white
+  flex
+  "
+  >
+    <Nav />
+    <div class="p-15 w-full">
+      <h1
+        v-show="uStore.loggedInUser"
+        class="text-center mb-5"
+      >
+        {{ control.activeItem }}
+      </h1>
+      <router-view v-show="uStore.loggedInUser" />
+    </div>
   </div>
 </template>
