@@ -36,5 +36,8 @@ const findRide = useFindRideStore()
         />
       </li>
     </ol>
+    <button v-show="dumbInfo" class="button block mt-3 ml-auto">
+      book
+    </button>
   </section>
 </template>

@@ -72,7 +72,7 @@ h2 {
 }
 
 .button {
-  @apply py-3 px-5 bg-orange-500 rounded inline-block
+  @apply py-3 px-6 bg-orange-500 rounded-xl inline-block
     text-white cursor-pointer uppercase
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
