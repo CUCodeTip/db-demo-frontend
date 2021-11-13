@@ -29,10 +29,20 @@ onMounted(() => usernameInput.value?.focus())
   <div class="flex flex-col space-y-3 px-10">
     <span v-show="uStore.loggedInUser">
       Logged in as
-      <span class="font-semibold">{{ uStore.loggedInUser }}</span>
+      <span
+        class="
+      font-semibold text-orange-500"
+      >{{ uStore.loggedInUser }}</span>
       {{ emoji }}
     </span>
-    <div class="flex justify-between items-center h-2.5rem">
+    <span
+      v-show="!uStore.loggedInUser"
+      class="
+    text-2xl font-bold text-orange-500"
+    >
+      Login First! 😠
+    </span>
+    <div class="flex space-x-3 items-center h-2.5rem">
       <span>username: </span>
       <input
         ref="usernameInput"

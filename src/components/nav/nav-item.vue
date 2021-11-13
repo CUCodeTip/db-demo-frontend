@@ -16,7 +16,7 @@ const emitClick = () => {
 
 <template>
   <button
-    class="w-full py-5
+    class="w-full py-6
   flex justify-center items-center
   transition-colors active:outline-none"
     :class="{
@@ -27,7 +27,7 @@ const emitClick = () => {
     :disabled="props.active"
     @click="emitClick"
   >
-    <span class="text-gray-white font-bold text-2xl">
+    <span class="text-gray-white font-medium text-2xl">
       {{ name }}
     </span>
   </button>

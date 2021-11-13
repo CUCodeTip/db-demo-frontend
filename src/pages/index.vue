@@ -1,9 +1,15 @@
 <script setup lang="ts">
-// const router = useRouter()
+import { useControlStore } from '~/stores/control'
+import { useUserStore } from '~/stores/user'
+
+const control = useControlStore()
+const uStore = useUserStore()
 </script>
 
 <template>
-  <div>
-    <h1>Hi</h1>
+  <div v-show="uStore.loggedInUser" class="w-full">
+    <h1 class="text-center">
+      {{ control.activeItem }}
+    </h1>
   </div>
 </template>

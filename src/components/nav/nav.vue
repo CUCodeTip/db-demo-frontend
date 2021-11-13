@@ -1,15 +1,22 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user'
 
+const uStore = useUserStore()
 </script>
 
 <template>
   <nav
     class="
-  w-30rem min-h-screen py-10
+  min-h-screen py-10
   flex flex-col justify-between
   bg-gray-700
   rounded-tr-3rem rounded-br-3rem
+  transition-all duration-1000 ease-in-out
   "
+    :class="{
+      'w-30rem': uStore.loggedInUser,
+      'w-60rem': !uStore.loggedInUser
+    }"
   >
     <nav-list />
     <nav-login />

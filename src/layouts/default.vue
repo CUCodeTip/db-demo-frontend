@@ -11,7 +11,7 @@
   "
   >
     <Nav />
-    <div class="p-15">
+    <div class="p-15 w-full">
       <router-view />
     </div>
   </div>
