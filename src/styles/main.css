@@ -66,3 +66,7 @@ h1 {
 h2 {
   @apply text-2xl font-bold;
 }
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

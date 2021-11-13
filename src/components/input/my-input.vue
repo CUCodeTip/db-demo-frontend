@@ -3,9 +3,12 @@ const props = defineProps<{
   label: string
   setter: (value: any) => void
   placeholder?: string
+  type?: 'text' | 'number' | 'date'
+  min?: number | string
+  default?: string | number | Date
 }>()
 
-const value = ref('')
+const value = ref(props.default ?? '')
 watch(value, () => {
   props.setter(value.value)
 })
@@ -16,9 +19,10 @@ watch(value, () => {
     <span class="text-xl">{{ props.label }}</span>
     <input
       v-model="value"
-      type="text"
+      :type="props.type ?? 'text'"
       class="ipt"
       :placeholder="props.placeholder ?? props.label"
+      :min="props.min"
     >
   </div>
 </template>
