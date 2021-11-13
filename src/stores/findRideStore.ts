@@ -1,6 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { getDateAsInput } from '~/utils'
-// import { NavItemOption, navItemOptToRoute } from '~/components/nav/types'
 
 export const useFindRideStore = defineStore('findRide', () => {
   const defaultDate = getDateAsInput(new Date())
@@ -41,12 +40,16 @@ export const useFindRideStore = defineStore('findRide', () => {
     endDate.value = defaultDate
   }
 
-  const selectRide = (driver: string, startTime: Date) => {
-    selectedRide.value = { driver, startTime }
-  }
   const isRideSelected = (driver: string, startTime: Date) => {
     return selectedRide.value?.driver === driver
-      && selectedRide.value?.startTime === startTime
+    && selectedRide.value?.startTime === startTime
+  }
+  const toggleRide = (driver: string, startTime: Date) => {
+    if (isRideSelected(driver, startTime)) {
+      selectedRide.value = null
+      return
+    }
+    selectedRide.value = { driver, startTime }
   }
 
   return {
@@ -63,7 +66,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     setEndDate,
     setPassengers,
     reset,
-    selectRide,
+    toggleRide,
     isRideSelected,
   }
 })

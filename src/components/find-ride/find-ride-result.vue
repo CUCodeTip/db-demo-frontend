@@ -32,7 +32,7 @@ const findRide = useFindRideStore()
           :date-time="ride.dateTime"
           :from="ride.from"
           :to="ride.to"
-          @click="findRide.selectRide(ride.driver, ride.dateTime)"
+          @click="findRide.toggleRide(ride.driver, ride.dateTime)"
         />
       </li>
     </ol>
