@@ -5,7 +5,7 @@
 <template>
   <nav
     class="
-  w-30rem min-h-screen p-10
+  w-30rem min-h-screen py-10
   flex flex-col justify-between
   bg-gray-700
   rounded-tr-3rem rounded-br-3rem

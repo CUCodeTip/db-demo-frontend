@@ -5,7 +5,6 @@ import { useUserStore } from '~/stores/user'
 const { emoji } = useIdleEmoji()
 const uStore = useUserStore()
 
-
 const usernameInput = ref<null | HTMLInputElement>(null)
 const username = ref('')
 const buttonDisabled = computed(
@@ -27,7 +26,7 @@ onMounted(() => usernameInput.value?.focus())
 </script>
 
 <template>
-  <div class="flex flex-col space-y-3">
+  <div class="flex flex-col space-y-3 px-10">
     <span v-show="uStore.loggedInUser">
       Logged in as
       <span class="font-semibold">{{ uStore.loggedInUser }}</span>
