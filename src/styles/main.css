@@ -48,6 +48,9 @@ html.dark {
       border rounded p-3 mt-3
       text-gray-100;
 }
+.ipt-container {
+  @apply flex flex-col w-full;
+}
 
 .icon-btn {
   @apply inline-block cursor-pointer select-none

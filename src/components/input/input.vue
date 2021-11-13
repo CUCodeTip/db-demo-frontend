@@ -12,7 +12,7 @@ watch(value, () => {
 </script>
 
 <template>
-  <div class="flex flex-col w-full">
+  <div class="ipt-container">
     <span class="text-xl">{{ props.label }}</span>
     <input
       v-model="value"
