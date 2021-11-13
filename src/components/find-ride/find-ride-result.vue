@@ -3,6 +3,13 @@ import dumbInfo from './dumbInfo'
 import { useFindRideStore } from '~/stores/findRideStore'
 import { formatDateTime } from '~/utils'
 const findRide = useFindRideStore()
+
+const book = () => {
+  alert(
+    `The ride from ${findRide.selectedRide!.driver} departing at ${formatDateTime(findRide.selectedRide!.startTime)} has been booked.`,
+  )
+  findRide.reset()
+}
 </script>
 
 <template>
@@ -36,7 +43,12 @@ const findRide = useFindRideStore()
         />
       </li>
     </ol>
-    <button v-show="dumbInfo" class="button block mt-3 ml-auto">
+    <button
+      v-show="dumbInfo"
+      class="button block mt-3 ml-auto"
+      :disabled="!findRide.selectedRide"
+      @click="book"
+    >
       book
     </button>
   </section>

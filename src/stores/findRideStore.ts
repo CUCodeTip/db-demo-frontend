@@ -38,6 +38,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     const defaultDate = getDateAsInput(new Date())
     startDate.value = defaultDate
     endDate.value = defaultDate
+    selectedRide.value = null
   }
 
   const isRideSelected = (driver: string, startTime: Date) => {
