@@ -24,7 +24,6 @@ const time = formatTime(props.dateTime)
     :class="{
       'bg-orange-500': findRide.isRideSelected(driver, dateTime),
       'hover:bg-orange-300': !findRide.isRideSelected(driver, dateTime),
-      'cursor-auto': findRide.isRideSelected(driver, dateTime)
     }"
   >
     <div class="bruhslkdfjg2">
