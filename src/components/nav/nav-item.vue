@@ -27,7 +27,7 @@ const emitClick = () => {
     :disabled="props.active"
     @click="emitClick"
   >
-    <span class="text-gray-white font-medium text-2xl">
+    <span class="text-gray-white font-medium text-xl">
       {{ name }}
     </span>
   </button>

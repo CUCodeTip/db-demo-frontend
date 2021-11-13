@@ -14,8 +14,8 @@ const uStore = useUserStore()
   transition-all duration-1000 ease-in-out
   "
     :class="{
-      'w-30rem': uStore.loggedInUser,
-      'w-60rem': !uStore.loggedInUser
+      'w-25rem': uStore.loggedInUser,
+      'w-35rem': !uStore.loggedInUser
     }"
   >
     <nav-list />
