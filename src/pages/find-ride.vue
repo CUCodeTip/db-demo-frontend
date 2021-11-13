@@ -1,48 +1,67 @@
 <script setup lang="ts">
 import { useFindRideStore } from '~/stores/findRideStore'
-import { getDateAsInput } from '~/utils'
 
 const inputs = useFindRideStore()
-
-const defaultStartDate = getDateAsInput(new Date())
-const defaultEndDate = defaultStartDate
 </script>
 
 <template>
   <main>
     <section class="space-y-4">
-      <div class="flex pr-60 gap-20">
-        <my-input
-          label="Start Location"
-          :setter="inputs.setStartLocation"
-          placeholder="Location"
-        />
-        <my-input
-          label="Destination Location"
-          :setter="inputs.setDestinationLocation"
-          placeholder="Location"
-        />
+      <div class="flex gap-15">
+        <div class="ipt-container">
+          <span class="text-xl">Start Location</span>
+          <input
+            v-model="inputs.startLocation"
+            class="ipt"
+            placeholder="Location"
+          >
+        </div>
+        <div class="ipt-container">
+          <span class="text-xl">Destination Location</span>
+          <input
+            v-model="inputs.destinationLocation"
+            class="ipt"
+            placeholder="Location"
+          >
+        </div>
+        <div class="ipt-container">
+          <span class="text-xl">Companions</span>
+          <input
+            v-model="inputs.companions"
+            class="ipt"
+            type="number"
+            min="0"
+          >
+        </div>
       </div>
-      <div class="flex gap-20">
-        <my-input
-          label="Start Date"
-          :setter="inputs.setStartDate"
-          type="date"
-          :default="defaultStartDate"
-        />
-        <my-input
-          label="End Date"
-          :setter="inputs.setStartDate"
-          type="date"
-          :default="defaultEndDate"
-        />
-        <my-input
-          label="Companions"
-          :setter="inputs.setStartDate"
-          type="number"
-          min="0"
-          :default="0"
-        />
+      <div class="flex gap-15 items-end">
+        <div class="ipt-container">
+          <span class="text-xl">Start Date</span>
+          <input
+            v-model="inputs.startDate"
+            class="ipt"
+            type="date"
+          >
+        </div>
+        <div class="ipt-container">
+          <span class="text-xl">End Date</span>
+          <input
+            v-model="inputs.endDate"
+            class="ipt"
+            type="date"
+          >
+        </div>
+        <div class="flex gap-5">
+          <button
+            class="button h-full bg-red-600"
+            @click="inputs.reset"
+          >
+            clear
+          </button>
+          <button class="button h-full">
+            search
+          </button>
+        </div>
       </div>
     </section>
   </main>

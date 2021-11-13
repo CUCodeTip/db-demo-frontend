@@ -70,3 +70,13 @@ h2 {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
+
+.button {
+  @apply py-3 px-5 bg-orange-500 rounded inline-block
+    text-white cursor-pointer uppercase
+    disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+}
+/* 
+.button.primary {
+  @apply bg-orange-500 hover:bg-orange-600;
+} */
