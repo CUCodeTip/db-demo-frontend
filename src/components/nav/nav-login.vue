@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { navItemOptToRoute } from './types'
 import useIdleEmoji from '~/composables/idleEmoji'
+import { useControlStore } from '~/stores/control'
 import { useUserStore } from '~/stores/user'
 
 const { emoji } = useIdleEmoji()
 const uStore = useUserStore()
+const router = useRouter()
+const control = useControlStore()
 
 const usernameInput = ref<null | HTMLInputElement>(null)
 const username = ref('')
@@ -17,6 +21,8 @@ const login = () => {
   if (uStore.login(username.value)) {
     username.value = ''
     usernameInput.value?.blur()
+    control.activeItem = 'Find Ride'
+    router.push(navItemOptToRoute[control.activeItem])
     return
   }
   alert('Login failed')

@@ -1,11 +1,18 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { NavItemOption } from '~/components/nav/types'
+import { NavItemOption, navItemOptToRoute } from '~/components/nav/types'
 
 export const useControlStore = defineStore('control', () => {
+  const router = useRouter()
+
   /**
    * The current active nav item telling what use case is selected.
    */
-  const activeItem = ref<NavItemOption>('Find Ride')
+  const activeItem = ref<NavItemOption | null>(null)
+
+  watch(activeItem, () => {
+    if (activeItem.value)
+      router.push(navItemOptToRoute[activeItem.value])
+  })
 
   /**
    * Changes the active nav item if 'item' parameter is different from the current active item.

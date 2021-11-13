@@ -1,7 +1,11 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <div>
-  </div>
+  <h2>This is find ride page</h2>
 </template>
+
+<style>
+  
+</style>
