@@ -17,9 +17,7 @@ watch(value, () => {
     <input
       v-model="value"
       type="text"
-      class="bg-transparent
-      border rounded p-3 mt-3
-      text-gray-100"
+      class="ipt"
       :placeholder="props.placeholder ?? props.label"
     >
   </div>

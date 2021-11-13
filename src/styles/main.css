@@ -35,11 +35,18 @@ html.dark {
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
 
+/* for tuts.vue */
 .inpt {
   @apply px-3 py-1 rounded inline-block
     bg-teal-200 text-gray-700
     hover:bg-teal-300
     disabled:cursor-default disabled:bg-gray-200 disabled:opacity-50;
+}
+/* for main app */
+.ipt {
+  @apply bg-transparent
+      border rounded p-3 mt-3
+      text-gray-100;
 }
 
 .icon-btn {
