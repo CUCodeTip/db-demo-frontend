@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useControlStore } from '~/stores/control'
+import { useUserStore } from '~/stores/user'
 
+const control = useControlStore()
+const uStore = useUserStore()
 </script>
 
 <template>
@@ -12,7 +16,13 @@
   >
     <Nav />
     <div class="p-15 w-full">
-      <router-view />
+      <h1
+        v-show="uStore.loggedInUser"
+        class="text-center mb-5"
+      >
+        {{ control.activeItem }}
+      </h1>
+      <router-view v-show="uStore.loggedInUser" />
     </div>
   </div>
 </template>
