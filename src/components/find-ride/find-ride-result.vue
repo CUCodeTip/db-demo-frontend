@@ -8,19 +8,23 @@ import dumbInfo from './dumbInfo'
 
 <template>
   <section>
-    <h2>Results</h2>
-    <div
-      v-for="ride in dumbInfo"
-      :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
-    >
-      <ride-result
-        :driver="ride.driver"
-        :max-passengers="ride.maxPassengers"
-        :passengers="ride.passengers"
-        :date-time="ride.dateTime"
-        :from="ride.from"
-        :to="ride.to"
-      />
-    </div>
+    <h2 class="mb-3">
+      Results <span class="font-normal">({{ dumbInfo.length }})</span>
+    </h2>
+    <ol class="space-y-2">
+      <li
+        v-for="ride in dumbInfo"
+        :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
+      >
+        <ride-result
+          :driver="ride.driver"
+          :max-passengers="ride.maxPassengers"
+          :passengers="ride.passengers"
+          :date-time="ride.dateTime"
+          :from="ride.from"
+          :to="ride.to"
+        />
+      </li>
+    </ol>
   </section>
 </template>
