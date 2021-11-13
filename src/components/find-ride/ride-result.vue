@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useFindRideStore } from '~/stores/findRideStore'
+import { formatDate, formatTime } from '~/utils'
+
+const findRide = useFindRideStore()
+
 const props = defineProps<{
   driver: string
   maxPassengers: number
@@ -8,17 +13,19 @@ const props = defineProps<{
   to: string
 }>()
 
-const date = `${String(props.dateTime.getDay()).padStart(2, '0')}/${
-  String(props.dateTime.getMonth() + 1).padStart(2, '0')}/${
-  String(props.dateTime.getFullYear())}`
-const time = `${String(props.dateTime.getHours()).padStart(2, '0')}:${
-  String(props.dateTime.getMinutes()).padStart(2, '0')}`
+const date = formatDate(props.dateTime)
+const time = formatTime(props.dateTime)
 </script>
 
 <template>
   <div
     class="flex w-full justify-evenly items-center
-  bg-gray-700 rounded-full h-22"
+  bg-gray-700 rounded-full h-22 cursor-pointer"
+    :class="{
+      'bg-orange-500': findRide.isRideSelected(driver, dateTime),
+      'hover:bg-orange-300': !findRide.isRideSelected(driver, dateTime),
+      'cursor-auto': findRide.isRideSelected(driver, dateTime)
+    }"
   >
     <div class="bruhslkdfjg2">
       <span class="font-semibold">{{ driver }}</span>
