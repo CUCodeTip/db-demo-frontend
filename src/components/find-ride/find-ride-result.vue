@@ -11,7 +11,7 @@ import dumbInfo from './dumbInfo'
     <h2 class="mb-3">
       Results <span class="font-normal">({{ dumbInfo.length }})</span>
     </h2>
-    <ol class="space-y-2">
+    <ol class="space-y-2 h-120 overflow-y-scroll pr-3">
       <li
         v-for="ride in dumbInfo"
         :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
