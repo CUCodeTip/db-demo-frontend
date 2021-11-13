@@ -34,7 +34,7 @@ onMounted(() => usernameInput.value?.focus())
   rounded-tr-3rem rounded-br-3rem
   "
   >
-    <div class="space-y-3rem">
+    <div v-show="uStore.loggedInUser" class="space-y-3rem">
       <h4>DDD</h4>
       <h4>DDD</h4>
       <h4>DDD</h4>
