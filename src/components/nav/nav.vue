@@ -9,13 +9,12 @@ const uStore = useUserStore()
     class="
   min-h-screen py-10
   flex flex-col justify-between
-  bg-gray-700
+  bg-gray-700 w-35rem
   rounded-tr-3rem rounded-br-3rem
   transition-all duration-1000 ease-in-out
   "
     :class="{
       'w-25rem': uStore.loggedInUser,
-      'w-35rem': !uStore.loggedInUser
     }"
   >
     <nav-list />

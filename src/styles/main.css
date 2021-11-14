@@ -35,11 +35,21 @@ html.dark {
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
 
+/* for tuts.vue */
 .inpt {
   @apply px-3 py-1 rounded inline-block
     bg-teal-200 text-gray-700
     hover:bg-teal-300
     disabled:cursor-default disabled:bg-gray-200 disabled:opacity-50;
+}
+/* for main app */
+.ipt {
+  @apply bg-transparent
+      border rounded p-3 mt-3
+      text-gray-100;
+}
+.ipt-container {
+  @apply flex flex-col w-full;
 }
 
 .icon-btn {
@@ -55,4 +65,60 @@ h1 {
 
 h2 {
   @apply text-2xl font-bold;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.button {
+  @apply py-3 px-6 bg-orange-500 rounded-xl inline-block
+    text-white cursor-pointer uppercase
+    disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+}
+/* 
+.button.primary {
+  @apply bg-orange-500 hover:bg-orange-600;
+} */
+
+/* Scrollbar with CSS */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #4a5568;
+  border: 0px none #ffffff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #3d4451;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.icon-wg4938vdc {
+  @apply w-7 h-7;
+}
+.bruhslkdfjg2 {
+  @apply flex items-center justify-center gap-3;
 }

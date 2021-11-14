@@ -1,11 +1,6 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <h2>This is find ride page</h2>
+  <main class="space-y-10">
+    <find-ride-form />
+    <find-ride-result />
+  </main>
 </template>
-
-<style>
-  
-</style>

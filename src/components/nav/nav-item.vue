@@ -20,9 +20,8 @@ const emitClick = () => {
   flex justify-center items-center
   transition-colors active:outline-none"
     :class="{
-      'bg-orange-500': props.active,
+      'bg-orange-500 cursor-auto': props.active,
       'hover:bg-orange-300': !props.active,
-      'cursor-auto': props.active,
     }"
     :disabled="props.active"
     @click="emitClick"

@@ -15,7 +15,7 @@ const uStore = useUserStore()
   "
   >
     <Nav />
-    <div class="p-15 w-full">
+    <div class="px-15 py-10 w-full">
       <h1
         v-show="uStore.loggedInUser"
         class="text-center mb-5"
