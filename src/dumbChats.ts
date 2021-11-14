@@ -24,7 +24,7 @@ export const dumbChats: ChatCover[] = [
 
   }, {
     driver: 'John Doe',
-    profile: 'https://49.media.tumblr.com/1af5628311b430fe731ba8eaa0286165/tumblr_nzwm5xmTbJ1v1vw2lo1_500.gif',
+    profile: 'https://media2.giphy.com/media/WTL02R1L7YCGUEunFy/200.gif',
     latestMessage: {
       text: `Aliqua quis aute elit aliqua magna duis est sint sint voluptate aute. In laborum cillum nulla mollit deserunt consectetur. Occaecat amet ut ea eiusmod nulla do nisi sint anim ut do quis aliquip sint. Eu eiusmod id nostrud est ullamco officia irure occaecat quis esse ipsum ut amet eu. Adipisicing ullamco incididunt cupidatat aliquip.
 
