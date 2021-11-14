@@ -18,7 +18,10 @@ const uStore = useUserStore()
     }"
   >
     <nav-list />
-    <nav-login />
+    <div class="px-5">
+      <nav-login />
+      <span class="mt-6 block opacity-60">CU CodeTip</span>
+    </div>
   </nav>
 </template>
 

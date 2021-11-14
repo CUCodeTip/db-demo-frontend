@@ -32,7 +32,7 @@ onMounted(() => usernameInput.value?.focus())
 </script>
 
 <template>
-  <div class="flex flex-col space-y-3 px-5">
+  <div class="flex flex-col space-y-3">
     <span v-show="uStore.loggedInUser">
       Logged in as
       <span
