@@ -27,7 +27,7 @@ export const useFindRideStore = defineStore('findRide', () => {
   const setEndDate = (date: string) => {
     endDate.value = date
   }
-  const setPassengers = (number: number) => {
+  const setAvailableSeats = (number: number) => {
     availableSeats.value = number
   }
 
@@ -65,7 +65,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     setDestinationLocation,
     setStartDate,
     setEndDate,
-    setPassengers,
+    setAvailableSeats,
     reset,
     toggleRide,
     isRideSelected,
