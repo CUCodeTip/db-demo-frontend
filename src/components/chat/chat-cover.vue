@@ -10,7 +10,7 @@ defineProps<{
   <div class="flex px-3 space-x-10 w-full justify-between">
     <img
       :src="chat.profile"
-      class="h-25 w-25 rounded-full"
+      class="h-25 w-25 rounded-full object-center object-cover"
     >
     <div class="space-y-3 flex-grow">
       <div class="flex items-center justify-between">
