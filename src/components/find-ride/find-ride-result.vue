@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import dumbInfo from './dumbInfo'
+import dumbInfo from '../../dumbRides'
 import { useFindRideStore } from '~/stores/findRideStore'
 import { formatDateTime } from '~/utils'
 const findRide = useFindRideStore()
