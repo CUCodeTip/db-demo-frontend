@@ -7,8 +7,8 @@ const uStore = useUserStore()
 <template>
   <nav
     class="
-  min-h-screen py-10
-  flex flex-col justify-between
+  min-h-screen py-10 fixed
+  justify-between flex flex-col
   bg-gray-700 w-35rem
   rounded-tr-3rem rounded-br-3rem
   transition-all duration-1000 ease-in-out
