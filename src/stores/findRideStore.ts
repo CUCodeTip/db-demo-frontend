@@ -10,6 +10,14 @@ export const useFindRideStore = defineStore('findRide', () => {
   const endDate = ref(defaultDate)
   const availableSeats = ref(1)
 
+  const areAllFieldsDefaults = computed(() =>
+    startLocation.value === ''
+      && destinationLocation.value === ''
+      && startDate.value === defaultDate
+      && endDate.value === defaultDate
+      && availableSeats.value === 1,
+  )
+
   const selectedRide = ref<null | {
     driver: string
     startTime: Date
@@ -61,6 +69,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     availableSeats,
     selectedRide,
     defaultDate,
+    areAllFieldsDefaults,
     setStartLocation,
     setDestinationLocation,
     setStartDate,

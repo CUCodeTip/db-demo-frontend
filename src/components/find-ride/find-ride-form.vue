@@ -52,6 +52,7 @@ const findRide = useFindRideStore()
       <div class="flex gap-5">
         <button
           class="button h-full bg-red-600"
+          :disabled="findRide.areAllFieldsDefaults"
           @click="findRide.reset"
         >
           clear
