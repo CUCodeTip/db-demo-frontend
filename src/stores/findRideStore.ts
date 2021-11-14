@@ -8,7 +8,7 @@ export const useFindRideStore = defineStore('findRide', () => {
   const destinationLocation = ref('')
   const startDate = ref(defaultDate)
   const endDate = ref(defaultDate)
-  const companions = ref(0)
+  const availableSeats = ref(1)
 
   const selectedRide = ref<null | {
     driver: string
@@ -28,13 +28,13 @@ export const useFindRideStore = defineStore('findRide', () => {
     endDate.value = date
   }
   const setPassengers = (number: number) => {
-    companions.value = number
+    availableSeats.value = number
   }
 
   const reset = () => {
     startLocation.value = ''
     destinationLocation.value = ''
-    companions.value = 0
+    availableSeats.value = 1
     const defaultDate = getDateAsInput(new Date())
     startDate.value = defaultDate
     endDate.value = defaultDate
@@ -58,7 +58,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     destinationLocation,
     startDate,
     endDate,
-    companions,
+    availableSeats,
     selectedRide,
     defaultDate,
     setStartLocation,

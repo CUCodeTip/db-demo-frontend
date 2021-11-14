@@ -23,12 +23,12 @@ const findRide = useFindRideStore()
         >
       </div>
       <div class="ipt-container">
-        <span class="text-xl">Companions</span>
+        <span class="text-xl">Available Seats</span>
         <input
-          v-model="findRide.companions"
+          v-model="findRide.availableSeats"
           class="ipt"
           type="number"
-          min="0"
+          min="1"
         >
       </div>
     </div>
