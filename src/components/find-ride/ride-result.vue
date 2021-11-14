@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import FormattedDate from '../formatted-date.vue'
 import { useFindRideStore } from '~/stores/findRideStore'
-import { formatDate, formatTime } from '~/utils'
 
 const findRide = useFindRideStore()
 
-const props = defineProps<{
+defineProps<{
   driver: string
   maxPassengers: number
   passengers: number
@@ -12,9 +12,6 @@ const props = defineProps<{
   from: string
   to: string
 }>()
-
-const date = formatDate(props.dateTime)
-const time = formatTime(props.dateTime)
 </script>
 
 <template>
@@ -29,24 +26,9 @@ const time = formatTime(props.dateTime)
     <div class="bruhslkdfjg2">
       <span class="font-semibold">{{ driver }}</span>
     </div>
-    <div class="bruhslkdfjg2">
-      <el:person class="icon-wg4938vdc" /><span>{{ passengers }}/{{ maxPassengers }}</span>
-    </div>
-    <div class="bruhslkdfjg2">
-      <bx:bx-calendar class="icon-wg4938vdc" /><span>{{ date }}</span>
-    </div>
-    <div class="bruhslkdfjg2">
-      <akar-icons:clock class="icon-wg4938vdc" /><span>{{ time }}</span>
-    </div>
+    <passengers-count :passengers="passengers" :max-passengers="maxPassengers" />
+    <formatted-date :date="dateTime" />
+    <formatted-time :date="dateTime" />
     <pin-from-to :from="from" :to="to" />
   </div>
 </template>
-
-<style>
-.bruhslkdfjg2 {
-  @apply flex items-center justify-center gap-3;
-}
-.icon-wg4938vdc {
-  @apply w-7 h-7;
-}
-</style>

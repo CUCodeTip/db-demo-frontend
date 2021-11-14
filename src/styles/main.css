@@ -115,3 +115,10 @@ h2 {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+.icon-wg4938vdc {
+  @apply w-7 h-7;
+}
+.bruhslkdfjg2 {
+  @apply flex items-center justify-center gap-3;
+}
