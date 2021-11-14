@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RideStatus } from '~/types'
+import { RideStatusBruh } from '~/types'
 
 defineProps<{
   driver: string
@@ -8,7 +8,7 @@ defineProps<{
   dateTime: Date
   from: string
   to: string
-  status: RideStatus
+  status: RideStatusBruh
 }>()
 </script>
 

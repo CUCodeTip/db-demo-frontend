@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { RideStatus } from '~/types'
+import { RideStatusBruh } from '~/types'
 
 const props = defineProps<{
-  status: RideStatus
+  status: RideStatusBruh
 }>()
 
 const rideStatusToClass: {
-  [key in RideStatus]: string
+  [key in RideStatusBruh]: string
 } = {
   Booked: 'text-green-400',
   Available: 'text-green-300',

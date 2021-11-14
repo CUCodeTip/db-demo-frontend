@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="bruhslkdfjg2">
+  <div class="bruhslkdfjg2 gap-2">
     <el:person class="icon-wg4938vdc" /><span>{{ passengers }}/{{ maxPassengers }}</span>
   </div>
 </template>
