@@ -23,7 +23,7 @@ export const dumbChats: ChatCover[] = [
     passengers: 2,
 
   }, {
-    driver: 'Jane Dee',
+    driver: 'John Doe',
     profile: 'https://49.media.tumblr.com/1af5628311b430fe731ba8eaa0286165/tumblr_nzwm5xmTbJ1v1vw2lo1_500.gif',
     latestMessage: {
       text: `Aliqua quis aute elit aliqua magna duis est sint sint voluptate aute. In laborum cillum nulla mollit deserunt consectetur. Occaecat amet ut ea eiusmod nulla do nisi sint anim ut do quis aliquip sint. Eu eiusmod id nostrud est ullamco officia irure occaecat quis esse ipsum ut amet eu. Adipisicing ullamco incididunt cupidatat aliquip.
@@ -38,7 +38,7 @@ Do culpa nulla consequat pariatur exercitation excepteur esse et elit eiusmod. A
     passengers: 8,
 
   }, {
-    driver: 'Jane Dee',
+    driver: 'James Dunk',
     profile: 'https://c.tenor.com/ER_xl0H9FaUAAAAd/distorted-cat-meme-distortion.gif',
     latestMessage: {
       text: '🦕🦖🦈🐬🐬🐬',
