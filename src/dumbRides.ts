@@ -1,10 +1,13 @@
+import { RideStatusBruh } from './types'
+
 const dumbInfo: {
   driver: string
   maxPassengers: number
   passengers: number
   dateTime: Date
-  from: string
   to: string
+  from: string
+  status: RideStatusBruh
 }[] = [
   {
     dateTime: new Date(),
@@ -13,6 +16,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   },
   {
     dateTime: new Date(),
@@ -21,6 +25,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Full',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -28,6 +33,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Booked',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -35,6 +41,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Booked',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -42,6 +49,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Booked',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -49,6 +57,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Booked',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -56,6 +65,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -63,6 +73,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -70,6 +81,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -77,6 +89,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -84,6 +97,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   }, {
     dateTime: new Date(),
     driver: 'John Doe',
@@ -91,6 +105,7 @@ const dumbInfo: {
     maxPassengers: 4,
     passengers: 2,
     to: 'Melbourne',
+    status: 'Available',
   },
 ]
 
