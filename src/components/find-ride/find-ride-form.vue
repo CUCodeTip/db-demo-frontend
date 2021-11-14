@@ -56,7 +56,10 @@ const findRide = useFindRideStore()
         >
           clear
         </button>
-        <button class="button h-full">
+        <button
+          class="button h-full"
+          :disabled="!findRide.startLocation || !findRide.destinationLocation"
+        >
           search
         </button>
       </div>
