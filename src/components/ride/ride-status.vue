@@ -10,8 +10,8 @@ const rideStatusToClass: {
 } = {
   Booked: 'text-green-400',
   Available: 'text-green-300',
-  Cancelled: 'text-#FF5353',
-  Ended: 'text-dark-900',
+  Cancelled: 'text-[#FF5353]',
+  Ended: 'text-gray-300',
   Full: 'text-orange-400',
   Ongoing: 'text-blue-400',
 }
