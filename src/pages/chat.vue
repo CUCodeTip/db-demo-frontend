@@ -6,10 +6,7 @@ const getRickRolledLmao = () => {
 </script>
 
 <template>
-  <ol
-    class="overflow-y-scroll h-45rem
-    pr-3 space-y-5"
-  >
+  <ol class="overflow-y-scroll pr-3 space-y-5 max-h-80vh">
     <li
       v-for="(chat, idx) in dumbChats"
       :key="idx"

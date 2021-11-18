@@ -8,7 +8,7 @@ import dumbInfo from '~/dumbRides'
       Results <span class="font-normal">({{ dumbInfo.length }})</span>
     </h2>
     <ol
-      class="overflow-y-scroll h-45rem
+      class="overflow-y-scroll max-h-75vh
     pr-3 space-y-5"
     >
       <li
