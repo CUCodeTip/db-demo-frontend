@@ -26,3 +26,25 @@ export type ChatCoverCard = {
 export type User = {
   name: string
 }
+
+export type ChatCover = {
+  profile: string
+  driverName: string
+  latestMessage: {
+    text: string
+    timestamp: Date
+  }
+  rideStartDate: Date
+  maxAvailableSeats: number
+  reservedPassengers: number
+}
+
+export type Book = {
+  driverName: string
+  maxAvailableSeats: number
+  reservedPassengers: number
+  startingTime: Date
+  to: string // drop off
+  from: string // pick up
+  status: RideStatusBruh // 'Cancelled'
+}

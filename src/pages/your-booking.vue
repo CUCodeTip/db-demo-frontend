@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import dumbInfo from '~/dumbRides'
+// TODO
+// import fetchy from '~/fetchy'
+// import { useUserStore } from '~/stores/user'
+// import { Book } from '~/types'
+
+// const uStore = useUserStore()
+
+// const { data: books } = fetchy('book').post({ userId: uStore.user }).json<Book[]>()
 </script>
 
 <template>
