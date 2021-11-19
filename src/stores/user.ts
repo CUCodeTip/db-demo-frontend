@@ -18,12 +18,12 @@ export const useUserStore = defineStore('user', () => {
   ) => {
     fetchy('login', {
       afterFetch(ctx) {
-        // 401 means login failed
         onSuccess()
         loggedInUser.value = ctx.data
         return ctx
       },
       onFetchError(ctx) {
+        // 401 means login failed
         onFail()
         loggedInUser.value = null
         return ctx
