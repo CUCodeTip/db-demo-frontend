@@ -9,7 +9,7 @@ import { ChatCoverCard } from '~/types'
 // const uStore = useUserStore()
 
 // 'api/chat?userId=${uStore.loggedInUser}'
-const { data: chatCovers } = fetchy('/chat').json<ChatCoverCard[]>()
+const { data: chatCovers } = fetchy('chat').json<ChatCoverCard[]>()
 
 
 const getRickRolledLmao = () => {
