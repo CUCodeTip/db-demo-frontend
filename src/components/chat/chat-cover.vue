@@ -15,14 +15,14 @@ defineProps<{
     <div class="space-y-3 flex-grow">
       <div class="flex items-center justify-between">
         <h4 class="font-semibold text-2xl flex-grow">
-          {{ chat.driver }}'s Ride
+          {{ chat.driverName }}'s Ride
         </h4>
         <div class="flex items-center justify-center gap-3">
-          <formatted-date :date="chat.startDate" />
-          <formatted-time :date="chat.startDate" />
+          <formatted-date :date="chat.rideStartDate" />
+          <formatted-time :date="chat.rideStartDate" />
           <passengers-count
-            :max-passengers="chat.maxPassengers"
-            :passengers="chat.passengers"
+            :max-passengers="chat.maxAvailableSeats"
+            :passengers="chat.reservedPassengers"
           />
         </div>
       </div>
