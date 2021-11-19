@@ -9,15 +9,17 @@ import { ChatCoverCard } from '~/types'
 // const uStore = useUserStore()
 
 // 'api/chat?userId=${uStore.loggedInUser}'
-const { data: chatCovers } = fetchy('chat').json<ChatCoverCard[]>()
-
+const {
+  data: chatCovers,
+  execute: getChatCovers,
+} = fetchy('chat', { immediate: false }).json<ChatCoverCard[]>()
 
 const getRickRolledLmao = () => {
   window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')
 }
 
 onMounted(() => {
-
+  getChatCovers()
 })
 </script>
 
