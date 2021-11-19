@@ -12,7 +12,7 @@ const createRide = () => {
 </script>
 
 <template>
-  <form v-if="true" class="flex flex-wrap gap-y-5 gap-x-10">
+  <form v-if="true" class="flex flex-wrap gap-y-4 gap-x-10">
     <div class="ipt-container w-100">
       <span class="text-xl">Start Location</span>
       <input
