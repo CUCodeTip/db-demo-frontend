@@ -10,28 +10,21 @@ const router = useRouter()
 const control = useControlStore()
 
 const usernameInput = ref<null | HTMLInputElement>(null)
-const username = ref('')
+const username = ref<number | null>(null)
 const buttonDisabled = computed(
-  () => !username.value
-    || (uStore.loggedInUser !== '' && uStore.loggedInUser === username.value),
+  () => username.value === null
+    || (uStore.loggedInUser !== null
+    && uStore.loggedInUser.user_id === username.value),
 )
 
 const login = () => {
   if (buttonDisabled.value) return
-  if (uStore.login(username.value)) {
-    username.value = ''
+  uStore.login(username.value!, () => { alert('Login failed') }, () => {
+    username.value = null
     usernameInput.value?.blur()
     control.activeItem = 'Find Ride'
     router.push(navItemOptToRoute[control.activeItem])
-    return
-  }
-  alert('Login failed')
-  // uStore.login(username.value, () => alert('Login failed'), () => {
-  //   username.value = ''
-  //   usernameInput.value?.blur()
-  //   control.activeItem = 'Find Ride'
-  //   router.push(navItemOptToRoute[control.activeItem])
-  // })
+  })
 }
 
 onMounted(() => usernameInput.value?.focus())
@@ -44,7 +37,7 @@ onMounted(() => usernameInput.value?.focus())
       <span
         class="
       font-semibold text-orange-500"
-      >{{ uStore.loggedInUser }}</span>
+      >{{ uStore.loggedInUser?.name }}</span>
       {{ emoji }}
     </span>
     <span
@@ -58,7 +51,7 @@ onMounted(() => usernameInput.value?.focus())
       <input
         ref="usernameInput"
         v-model="username"
-        type="text"
+        type="number"
         class="border border-gray-900
         bg-transparent
         h-full px-3 w-2/3

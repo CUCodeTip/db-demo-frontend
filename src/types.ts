@@ -24,7 +24,14 @@ export type ChatCoverCard = {
 }
 
 export type User = {
+  user_id: number
+  citizen_id: string
   name: string
+  gender?: any
+  birth_date?: any
+  phone_number: string
+  email?: any
+  money_amount: number
 }
 
 export type ChatCover = {
