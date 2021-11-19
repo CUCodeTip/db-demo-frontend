@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <create-ride-form v-if="true" class="mb-4" />
+    <create-ride-form class="mb-4" />
     <h2 class="mb-3">
       Results <span class="font-normal">({{ dumbInfo.length }})</span>
     </h2>
