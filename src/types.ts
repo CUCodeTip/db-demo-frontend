@@ -22,3 +22,7 @@ export type ChatCoverCard = {
   updatedAt: Date
   __v: number
 }
+
+export type User = {
+  name: string
+}

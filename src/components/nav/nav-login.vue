@@ -26,6 +26,12 @@ const login = () => {
     return
   }
   alert('Login failed')
+  // uStore.login(username.value, () => alert('Login failed'), () => {
+  //   username.value = ''
+  //   usernameInput.value?.blur()
+  //   control.activeItem = 'Find Ride'
+  //   router.push(navItemOptToRoute[control.activeItem])
+  // })
 }
 
 onMounted(() => usernameInput.value?.focus())

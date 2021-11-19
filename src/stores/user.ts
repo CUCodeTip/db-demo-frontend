@@ -1,4 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+// import fetchy from '~/fetchy'
+// import { User } from '~/types'
 
 export const useUserStore = defineStore('user', () => {
   const registeredUsers = new Set([
@@ -6,6 +8,7 @@ export const useUserStore = defineStore('user', () => {
   ])
 
   const loggedInUser = ref('')
+  // const user = ref<User | null>(null)
 
   /**
    * Login the user to user store
@@ -18,6 +21,31 @@ export const useUserStore = defineStore('user', () => {
     }
     return false
   }
+
+  /**
+   * Login the user if username exists in the database
+   * @param username username of the user
+   * @param onFail gets called if login fails
+   * @param onSuccess gets called if login succeeds
+   */
+  // const login = (
+  //   username: string,
+  //   onFail: () => void = () => { },
+  //   onSuccess: () => void = () => { },
+  // ) => {
+  //   fetchy('/api/login', {
+  //     afterFetch(ctx) {
+  //       // 401 means login failed
+  //       if (ctx.response.status === 401) {
+  //         onFail()
+  //         ctx.data = null
+  //       }
+  //       else { onSuccess() }
+  //       user.value = ctx.data
+  //       return ctx
+  //     },
+  //   }).post({ userId: username }).json<User>()
+  // }
 
   return {
     loggedInUser,
