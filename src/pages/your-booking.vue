@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import dumbInfo from '~/dumbRides'
-// TODO
+// TODO Don't for get to intercept to turn the date to real date
 // import fetchy from '~/fetchy'
 // import { useUserStore } from '~/stores/user'
 // import { Book } from '~/types'
