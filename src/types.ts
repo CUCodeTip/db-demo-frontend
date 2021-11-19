@@ -55,3 +55,7 @@ export type Book = {
   from: string // pick up
   status: RideStatusBruh // 'Cancelled'
 }
+
+export type Ride = {
+  //
+}
