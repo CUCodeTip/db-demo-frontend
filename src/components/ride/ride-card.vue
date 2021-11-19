@@ -2,7 +2,6 @@
 import { RideStatusBruh } from '~/types'
 
 defineProps<{
-  driver: string
   maxPassengers: number
   passengers: number
   dateTime: Date

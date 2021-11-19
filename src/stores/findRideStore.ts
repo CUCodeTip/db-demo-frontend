@@ -1,5 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { Ride } from '~/types'
+import { RideCardo } from '~/types'
 import { getDateAsInput } from '~/utils'
 
 export const useFindRideStore = defineStore('findRide', () => {
@@ -24,7 +24,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     startTime: Date
   }>(null)
 
-  const matchedRides = ref<null | Ride[]>(null)
+  const matchedRides = ref<null | RideCardo[]>(null)
 
   const setStartLocation = (location: string) => {
     startLocation.value = location

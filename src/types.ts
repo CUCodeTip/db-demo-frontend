@@ -56,6 +56,12 @@ export type Book = {
   status: RideStatusBruh // 'Cancelled'
 }
 
-export type Ride = {
-  //
+export type RideCardo = {
+  driver_id: number
+  max_available_seats: number
+  reserved_passengers: number
+  starting_time: Date
+  to: string // drop off
+  from: string // pick up
+  status: RideStatusBruh
 }

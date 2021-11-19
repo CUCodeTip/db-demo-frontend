@@ -1,5 +1,27 @@
 <script setup lang="ts">
 import dumbInfo from '~/dumbRides'
+import fetchy from '~/fetchy'
+import { useUserStore } from '~/stores/user'
+import { RideCardo } from '~/types'
+
+const uStore = useUserStore()
+const { data: rides, execute: getRides } = fetchy('rides', {
+  immediate: false,
+  afterFetch(ctx) {
+    ctx.data = ctx.data.map((ride: any) => {
+      const [from, to] = ride.route.split(', ')
+      ride.from = from
+      ride.to = to
+      delete ride.route
+      return ride
+    })
+    return ctx
+  },
+}).post({ id: uStore.loggedInUser!.user_id }).json<RideCardo[]>()
+
+onMounted(() => {
+  getRides()
+})
 </script>
 
 <template>
@@ -18,7 +40,6 @@ import dumbInfo from '~/dumbRides'
         class="bg-gray-700 rounded-xl p-4"
       >
         <ride-card
-          :driver="ride.driver"
           :from="ride.from"
           :to="ride.to"
           :date-time="ride.dateTime"
