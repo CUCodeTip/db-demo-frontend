@@ -3,8 +3,8 @@ import { ViteSSGContext } from 'vite-ssg'
 export type UserModule = (ctx: ViteSSGContext) => void
 
 // 'RideStatus' doesn't work bruh, idk why 🙄
-export type RideStatusBruh = 'Booked' | 'Available' | 'Full' |
-'Ongoing' | 'Ended' | 'Cancelled'
+export type RideStatusBruh = 'booked' | 'available' | 'full' |
+'ongoing' | 'ended' | 'cancelled'
 
 export type Message = {
   senderId: string
@@ -64,5 +64,5 @@ export type RideCardo = {
   starting_time: Date
   to: string // drop off
   from: string // pick up
-  status: RideStatusBruh
+  ride_status: RideStatusBruh
 }

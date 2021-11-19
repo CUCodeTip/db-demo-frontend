@@ -13,6 +13,7 @@ const { data: rides, execute: getRides } = fetchy('rides', {
       ride.from = from
       ride.to = to
       delete ride.route
+      ride.starting_time = new Date(ride.starting_time)
       return ride
     })
     return ctx
@@ -35,17 +36,17 @@ onMounted(() => {
     pr-3 space-y-5"
     >
       <li
-        v-for="ride in dumbInfo"
-        :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
+        v-for="ride in rides"
+        :key="ride.starting_time.getMilliseconds()"
         class="bg-gray-700 rounded-xl p-4"
       >
         <ride-card
           :from="ride.from"
           :to="ride.to"
-          :date-time="ride.dateTime"
-          :max-passengers="ride.maxPassengers"
-          :passengers="ride.passengers"
-          :status="'Ended'"
+          :date-time="ride.starting_time"
+          :max-passengers="ride.max_available_seats"
+          :passengers="ride.reserved_passengers"
+          :status="ride.ride_status"
         />
       </li>
     </ol>

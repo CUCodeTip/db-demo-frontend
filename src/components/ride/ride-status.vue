@@ -8,12 +8,12 @@ const props = defineProps<{
 const rideStatusToClass: {
   [key in RideStatusBruh]: string
 } = {
-  Booked: 'text-green-400',
-  Available: 'text-green-300',
-  Cancelled: 'text-[#FF5353]',
-  Ended: 'text-gray-300',
-  Full: 'text-orange-400',
-  Ongoing: 'text-blue-400',
+  booked: 'text-green-400',
+  available: 'text-green-300',
+  cancelled: 'text-[#FF5353]',
+  ended: 'text-gray-300',
+  full: 'text-orange-400',
+  ongoing: 'text-blue-400',
 }
 const color = rideStatusToClass[props.status]
 </script>
