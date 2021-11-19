@@ -14,6 +14,7 @@ const control = useControlStore()
       @click="control.changeActiveItem('Find Ride')"
     />
     <nav-item
+      v-show="uStore.loggedInUser?.license_plate"
       name="Your Ride"
       :active="'Your Ride' === control.activeItem"
       @click="control.changeActiveItem('Your Ride')"

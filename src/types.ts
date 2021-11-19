@@ -27,11 +27,12 @@ export type User = {
   user_id: number
   citizen_id: string
   name: string
-  gender?: any
-  birth_date?: any
+  gender: any | null
+  birth_date: any | null
   phone_number: string
-  email?: any
+  email: string | null
   money_amount: number
+  license_plate: string | null
 }
 
 export type ChatCover = {
