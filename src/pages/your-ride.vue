@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import dumbInfo from '~/dumbRides'
 import fetchy from '~/fetchy'
 import { useUserStore } from '~/stores/user'
 import { RideCardo } from '~/types'
@@ -28,8 +27,8 @@ onMounted(() => {
 <template>
   <div>
     <create-ride-form class="mb-4" />
-    <h2 class="mb-3">
-      Results <span class="font-normal">({{ dumbInfo.length }})</span>
+    <h2 v-show="rides" class="mb-3">
+      Results <span class="font-normal">({{ rides?.length }})</span>
     </h2>
     <ol
       class="overflow-y-scroll max-h-75vh
