@@ -41,7 +41,10 @@ defineProps<{
     </div>
     <div class="flex flex-col justify-between items-center">
       <ride-status :status="status" />
-      <button class="button bg-[#F34949] rounded-20px">
+      <button
+        v-show="status === 'available' || status === 'full'"
+        class="button bg-[#F34949] rounded-20px"
+      >
         Cancel
       </button>
     </div>
