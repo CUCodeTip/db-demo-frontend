@@ -5,8 +5,9 @@ import { formatDateTime } from '~/utils'
 const findRide = useFindRideStore()
 
 const book = () => {
+  // eslint-disable-next-line no-alert
   alert(
-    `The ride from ${findRide.selectedRide!.driver} departing at ${formatDateTime(findRide.selectedRide!.startTime)} has been booked.`,
+    `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
   )
   findRide.reset()
 }
@@ -21,25 +22,28 @@ const book = () => {
       <span v-if="findRide.selectedRide">
         Booking a ride from
         <em class="text-orange-400">
-          {{ findRide.selectedRide.driver }}
+          {{ findRide.selectedRide.driver_id }}
         </em> starting at
         <em class="text-orange-400">
-          {{ formatDateTime(findRide.selectedRide.startTime) }}
+          {{ formatDateTime(findRide.selectedRide.starting_time) }}
         </em></span>
     </div>
-    <ol class="space-y-2 h-120 overflow-y-scroll pr-3">
+    <ol
+      v-if="findRide.matchedRides"
+      class="space-y-2 h-120 overflow-y-scroll pr-3"
+    >
       <li
-        v-for="ride in dumbInfo"
-        :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
+        v-for="ride in findRide.matchedRides"
+        :key="`${ride.driver_id}${ride.starting_time}`"
       >
         <ride-result
-          :driver="ride.driver"
-          :max-passengers="ride.maxPassengers"
-          :passengers="ride.passengers"
-          :date-time="ride.dateTime"
+          :driver="ride.name"
+          :max-passengers="ride.max_available_seats"
+          :passengers="ride.reserved_passengers"
+          :date-time="ride.starting_time"
           :from="ride.from"
           :to="ride.to"
-          @click="findRide.toggleRide(ride.driver, ride.dateTime)"
+          @click="findRide.toggleRide(ride.driver_id, ride.starting_time)"
         />
       </li>
     </ol>

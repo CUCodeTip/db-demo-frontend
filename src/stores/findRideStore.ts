@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { RideCardo } from '~/types'
+import fetchy from '~/fetchy'
+import { MatchedRide, RideKey } from '~/types'
 import { getDateAsInput } from '~/utils'
 
 export const useFindRideStore = defineStore('findRide', () => {
@@ -19,12 +20,16 @@ export const useFindRideStore = defineStore('findRide', () => {
       && availableSeats.value === 1,
   )
 
-  const selectedRide = ref<null | {
-    driver: string
-    startTime: Date
-  }>(null)
+  /**
+   * Selected ride from the matched rides to be booked
+   */
+  const selectedRide = ref<null | RideKey>(null)
 
-  const matchedRides = ref<null | RideCardo[]>(null)
+  /**
+   * Will be populated with the matched rides after
+   * the user submits the find ride form
+   */
+  const matchedRides = ref<null | MatchedRide[]>(null)
 
   const reset = () => {
     startLocation.value = ''
@@ -36,20 +41,45 @@ export const useFindRideStore = defineStore('findRide', () => {
     selectedRide.value = null
   }
 
-  const isRideSelected = (driver: string, startTime: Date) => {
-    return selectedRide.value?.driver === driver
-    && selectedRide.value?.startTime === startTime
+  const isRideSelected = (driver_id: number, starting_time: Date) => {
+    return selectedRide.value?.driver_id === driver_id
+    && selectedRide.value?.starting_time === starting_time
   }
-  const toggleRide = (driver: string, startTime: Date) => {
-    if (isRideSelected(driver, startTime)) {
+  const toggleRide = (driver_id: number, starting_time: Date) => {
+    if (isRideSelected(driver_id, starting_time)) {
       selectedRide.value = null
       return
     }
-    selectedRide.value = { driver, startTime }
+    selectedRide.value = { driver_id, starting_time }
   }
 
-  const find = () => {
+  const find = (onNotFound: () => void = () => {}) => {
     // TODO: call api to find rides
+    fetchy('', {
+      afterFetch(ctx) {
+        if (!ctx.data) { // if the result is an empty array, no matched rides
+          onNotFound()
+          return ctx
+        }
+        matchedRides.value = ctx.data.map((ride: any) => {
+          const [from, to] = ride.route.split(', ')
+          ride.from = from
+          ride.to = to
+          delete ride.route
+          ride.starting_time = new Date(ride.starting_time)
+          return ride
+        })
+        return ctx
+      },
+      onFetchError(ctx) {
+        onNotFound()
+        return ctx
+      },
+    }).post({
+      startDate: startDate.value,
+      endDate: endDate.value,
+      availableSeats: availableSeats.value,
+    }).json<MatchedRide[]>()
   }
 
   return {

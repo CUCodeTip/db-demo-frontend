@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { useFindRideStore } from '~/stores/findRideStore'
 const findRide = useFindRideStore()
+
+const find = () => {
+  // eslint-disable-next-line array-callback-return
+  findRide.find(() => {
+    // eslint-disable-next-line no-alert
+    alert('There are no matched rides. Please try again later\n🤣')
+  })
+}
+
 </script>
 
 <template>
@@ -60,7 +69,7 @@ const findRide = useFindRideStore()
         <button
           class="button h-full"
           :disabled="!findRide.startLocation || !findRide.destinationLocation"
-          @click="findRide.find"
+          @click="find"
         >
           search
         </button>

@@ -58,12 +58,19 @@ export type Book = {
   booking_status: RideStatusBruh
 }
 
-export type RideCardo = {
+export type RideKey = {
   driver_id: number
+  starting_time: Date
+}
+
+export type Ride = {
   max_available_seats: number
   reserved_passengers: number
-  starting_time: Date
   to: string // drop off
   from: string // pick up
   ride_status: RideStatusBruh
-}
+} & RideKey
+
+export type MatchedRide = {
+  name: string // driver's name
+} & Ride

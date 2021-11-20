@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import fetchy from '~/fetchy'
 import { useUserStore } from '~/stores/user'
-import { RideCardo } from '~/types'
+import { Ride } from '~/types'
 
 const uStore = useUserStore()
 const { data: rides, execute: getRides } = fetchy('rides', {
@@ -17,7 +17,7 @@ const { data: rides, execute: getRides } = fetchy('rides', {
     })
     return ctx
   },
-}).post({ id: uStore.loggedInUser?.user_id }).json<RideCardo[]>()
+}).post({ id: uStore.loggedInUser?.user_id }).json<Ride[]>()
 
 onMounted(() => {
   getRides()
