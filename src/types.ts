@@ -24,16 +24,17 @@ export type ChatCoverCard = {
 }
 
 export type User = {
-  user_id: number
   citizen_id: string
   name: string
-  gender: any | null
-  birth_date: any | null
+  gender: string
+  birth_date: Date | null
   phone_number: string
   email: string | null
   money_amount: number
-  license_plate: string | null // driver
-  capacity: number | null // the max number of passengers, driver
+  driver_id: number | null
+  license_plate: string | null
+  vehicle_model: string | null
+  vehicle_capacity: number | null
 }
 
 export type RecentMessage = {
