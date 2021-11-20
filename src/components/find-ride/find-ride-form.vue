@@ -11,16 +11,20 @@ const find = () => {
   })
 }
 
+const areThereMatchedRides = computed(() => findRide.matchedRides !== null)
 </script>
 
 <template>
   <section class="space-y-4">
-    <div class="flex gap-15">
+    <div
+      class="flex gap-15"
+      :class="{ 'opacity-50': areThereMatchedRides }"
+    >
       <div class="ipt-container">
         <span class="text-xl">Start Location</span>
         <input
           v-model="findRide.startLocation"
-          :disabled="findRide.matchedRides !== null"
+          :disabled="areThereMatchedRides"
           class="ipt"
           placeholder="Location"
         >
@@ -29,7 +33,7 @@ const find = () => {
         <span class="text-xl">Destination Location</span>
         <input
           v-model="findRide.destinationLocation"
-          :disabled="findRide.matchedRides !== null"
+          :disabled="areThereMatchedRides"
           class="ipt"
           placeholder="Location"
         >
@@ -38,7 +42,7 @@ const find = () => {
         <span class="text-xl">Available Seats</span>
         <input
           v-model="findRide.availableSeats"
-          :disabled="findRide.matchedRides !== null"
+          :disabled="areThereMatchedRides"
           class="ipt"
           type="number"
           min="1"
@@ -46,20 +50,26 @@ const find = () => {
       </div>
     </div>
     <div class="flex gap-15 items-end">
-      <div class="ipt-container">
+      <div
+        class="ipt-container"
+        :class="{ 'opacity-50': areThereMatchedRides }"
+      >
         <span class="text-xl">Start Date</span>
         <input
           v-model="findRide.startDate"
-          :disabled="findRide.matchedRides !== null"
+          :disabled="areThereMatchedRides"
           class="ipt"
           type="date"
         >
       </div>
-      <div class="ipt-container">
+      <div
+        class="ipt-container"
+        :class="{ 'opacity-50': areThereMatchedRides }"
+      >
         <span class="text-xl">End Date</span>
         <input
           v-model="findRide.endDate"
-          :disabled="findRide.matchedRides !== null"
+          :disabled="areThereMatchedRides"
           class="ipt"
           type="date"
         >
@@ -76,7 +86,7 @@ const find = () => {
           class="button h-full"
           :disabled="!findRide.startLocation
             || !findRide.destinationLocation
-            || findRide.matchedRides !== null"
+            || areThereMatchedRides"
           @click="find"
         >
           search
