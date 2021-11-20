@@ -99,7 +99,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     onSuccess: () => void = () => {},
     onError: () => void = () => {},
   ) => {
-    fetchy('genBook', {
+    fetchy('bookRide', {
       afterFetch(ctx) {
         if (ctx.response.status !== 200) {
           onError()
