@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import fetchy from '~/fetchy'
-import { MatchedRide, RideKey } from '~/types'
+import { MatchedRide } from '~/types'
 import { getDateAsInput } from '~/utils'
 
 export const useFindRideStore = defineStore('findRide', () => {
@@ -23,7 +23,7 @@ export const useFindRideStore = defineStore('findRide', () => {
   /**
    * Selected ride from the matched rides to be booked
    */
-  const selectedRide = ref<null | RideKey>(null)
+  const selectedRide = ref<null | MatchedRide>(null)
 
   /**
    * Will be populated with the matched rides after
@@ -43,14 +43,14 @@ export const useFindRideStore = defineStore('findRide', () => {
 
   const isRideSelected = (driver_id: number, starting_time: Date) => {
     return selectedRide.value?.driver_id === driver_id
-    && selectedRide.value?.starting_time === starting_time
+      && selectedRide.value?.starting_time === starting_time
   }
-  const toggleRide = (driver_id: number, starting_time: Date) => {
-    if (isRideSelected(driver_id, starting_time)) {
+  const toggleRide = (ride: MatchedRide) => {
+    if (isRideSelected(ride.driver_id, ride.starting_time)) {
       selectedRide.value = null
       return
     }
-    selectedRide.value = { driver_id, starting_time }
+    selectedRide.value = ride
   }
 
   /**
@@ -58,7 +58,7 @@ export const useFindRideStore = defineStore('findRide', () => {
    * @param onNotFound runs if there are no matched rides or error
    */
   const find = (onNotFound: () => void = () => {}) => {
-    fetchy('', {
+    fetchy('find-ride', {
       afterFetch(ctx) {
         if (!ctx.data) { // if the result is an empty array, no matched rides
           onNotFound()
@@ -79,9 +79,9 @@ export const useFindRideStore = defineStore('findRide', () => {
         return ctx
       },
     }).post({
-      startDate: startDate.value,
-      endDate: endDate.value,
-      availableSeats: availableSeats.value,
+      startingTime: startDate.value,
+      endTime: endDate.value,
+      requestSeats: availableSeats.value,
     }).json<MatchedRide[]>()
   }
 

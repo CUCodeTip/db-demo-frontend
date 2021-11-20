@@ -3,6 +3,7 @@ import { useFindRideStore } from '~/stores/findRideStore'
 const findRide = useFindRideStore()
 
 const find = () => {
+  findRide.matchedRides = null
   // eslint-disable-next-line array-callback-return
   findRide.find(() => {
     // eslint-disable-next-line no-alert

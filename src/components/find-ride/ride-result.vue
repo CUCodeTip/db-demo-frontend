@@ -5,10 +5,11 @@ import { useFindRideStore } from '~/stores/findRideStore'
 const findRide = useFindRideStore()
 
 defineProps<{
-  driver: string
-  maxPassengers: number
-  passengers: number
-  dateTime: Date
+  driverName: string
+  driverId: number
+  maxAvailableSeats: number
+  reservedPassengers: number
+  startingTime: Date
   from: string
   to: string
 }>()
@@ -19,16 +20,16 @@ defineProps<{
     class="flex w-full justify-evenly items-center
   bg-gray-700 rounded-full h-22 cursor-pointer"
     :class="{
-      'bg-orange-500': findRide.isRideSelected(driver, dateTime),
-      'hover:bg-orange-300': !findRide.isRideSelected(driver, dateTime),
+      'bg-orange-500': findRide.isRideSelected(driverId, startingTime),
+      'hover:bg-orange-300': !findRide.isRideSelected(driverId, startingTime),
     }"
   >
     <div class="bruhslkdfjg2">
-      <span class="font-semibold">{{ driver }}</span>
+      <span class="font-semibold">{{ driverName }}</span>
     </div>
-    <passengers-count :passengers="passengers" :max-passengers="maxPassengers" />
-    <formatted-date :date="dateTime" />
-    <formatted-time :date="dateTime" />
+    <passengers-count :passengers="reservedPassengers" :max-passengers="maxAvailableSeats" />
+    <formatted-date :date="startingTime" />
+    <formatted-time :date="startingTime" />
     <pin-from-to :from="from" :to="to" />
   </div>
 </template>

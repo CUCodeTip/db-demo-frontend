@@ -25,7 +25,7 @@ const book = () => {
       <span v-if="findRide.selectedRide">
         Booking a ride from
         <em class="text-orange-400">
-          {{ findRide.selectedRide.driver_id }}
+          {{ findRide.selectedRide.name }}
         </em> starting at
         <em class="text-orange-400">
           {{ formatDateTime(findRide.selectedRide.starting_time) }}
@@ -40,13 +40,14 @@ const book = () => {
         :key="`${ride.driver_id}${ride.starting_time}`"
       >
         <ride-result
-          :driver="ride.name"
-          :max-passengers="ride.max_available_seats"
-          :passengers="ride.reserved_passengers"
-          :date-time="ride.starting_time"
+          :driver-id="ride.driver_id"
+          :starting-time="ride.starting_time"
+          :driver-name="ride.name"
+          :max-available-seats="ride.max_available_seats"
+          :reserved-passengers="ride.reserved_passengers"
           :from="ride.from"
           :to="ride.to"
-          @click="findRide.toggleRide(ride.driver_id, ride.starting_time)"
+          @click="findRide.toggleRide(ride)"
         />
       </li>
     </ol>
