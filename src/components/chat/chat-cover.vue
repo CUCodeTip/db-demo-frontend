@@ -39,9 +39,12 @@ const recentMessageTime = props.chat.recentMessage?.createAt
           />
         </div>
       </div>
-      <div class="flex opacity-60 justify-between">
-        <p class="w-4/5">
-          {{ chat.recentMessage?.message }}
+      <div class="flex opacity-80 justify-between">
+        <p class="w-4/5 flex flex-col whitespace-pre-wrap break-all">
+          <span class="text-orange-400">{{ chat.recentMessage?.senderName }}: </span>
+          <span class="whitespace-pre-wrap">
+            {{ chat.recentMessage?.message }}
+          </span>
         </p>
         <span v-if="chat.recentMessage?.createAt">
           {{ recentMessageTime }}
