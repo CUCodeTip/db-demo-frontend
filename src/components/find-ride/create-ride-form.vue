@@ -2,7 +2,7 @@
 import fetchy from '~/fetchy'
 import { useUserStore } from '~/stores/user'
 import { useYourRideStore } from '~/stores/yourRide'
-import { getDateAsInput } from '~/utils'
+import { getDatetimeAsInput } from '~/utils'
 
 const uStore = useUserStore()
 const yourRide = useYourRideStore()
@@ -11,7 +11,7 @@ const startLocation = ref('')
 const destinationLocation = ref('')
 const route = computed(() => `${startLocation.value}, ${destinationLocation.value}`)
 const availableSeats = ref(uStore.loggedInUser?.vehicle_capacity ?? 1)
-const startDate = ref(getDateAsInput(new Date()))
+const startDatetime = ref(getDatetimeAsInput(new Date()))
 
 const createRide = () => {
   fetchy('rides/create', {
@@ -31,7 +31,7 @@ const createRide = () => {
   }).post({
     driverName: uStore.loggedInUser?.name,
     driverId: uStore.loggedInUser?.driver_id,
-    startingTime: startDate.value,
+    startingTime: startDatetime.value,
     route: route.value,
     maxSeats: availableSeats.value,
   })
@@ -72,12 +72,13 @@ const createRide = () => {
       >
     </div>
     <div class="ipt-container w-100">
-      <span class="text-xl">Start Date</span>
+      <span class="text-xl">Start Datetime</span>
       <input
-        v-model="startDate"
+        v-model="startDatetime"
         required
         class="ipt"
-        type="date"
+        type="datetime-local"
+        step="1"
       >
     </div>
     <button
