@@ -43,6 +43,8 @@ onMounted(() => {
           :max-passengers="book.max_available_seats"
           :passengers="book.reserved_passengers"
           :status="book.booking_status"
+          :refetch-books="getBooks"
+          :book-id="book.booking_id"
         />
       </li>
     </ol>

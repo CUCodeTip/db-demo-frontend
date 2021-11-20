@@ -64,6 +64,7 @@ export type Book = {
   pickup_location: string
   dropoff_location: string
   booking_status: RideStatusBruh
+  booking_id: string
 }
 
 export type RideKey = {

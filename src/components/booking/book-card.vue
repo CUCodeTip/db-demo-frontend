@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import fetchy from '~/fetchy'
 import { RideStatusBruh } from '~/types'
 
-defineProps<{
+const props = defineProps<{
   driver: string
   maxPassengers: number
   passengers: number
@@ -9,7 +10,21 @@ defineProps<{
   from: string
   to: string
   status: RideStatusBruh
+  refetchBooks: (throwOnFailed?: boolean | undefined) => Promise<any>
+  bookId: string
 }>()
+
+const cancelBook = () => {
+  fetchy('book', {
+    afterFetch(ctx) {
+      if (ctx.response.ok)
+        props.refetchBooks()
+      else
+        console.error(ctx.response)
+      return ctx
+    },
+  }).delete({ book_id: props.bookId })
+}
 </script>
 
 <template>
@@ -42,8 +57,9 @@ defineProps<{
     <div class="flex flex-col justify-between items-center">
       <ride-status :status="status" />
       <button
-        v-show="status === 'available' || status === 'full'"
+        v-show="status === 'booked'"
         class="button bg-[#F34949] rounded-20px"
+        @click="cancelBook"
       >
         Cancel
       </button>
