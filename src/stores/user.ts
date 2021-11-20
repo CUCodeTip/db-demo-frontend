@@ -20,7 +20,6 @@ export const useUserStore = defineStore('user', () => {
       afterFetch(ctx) {
         onSuccess()
         loggedInUser.value = ctx.data
-        console.log(loggedInUser.value) // TODO: some user have user_id = null
         return ctx
       },
       onFetchError(ctx) {
