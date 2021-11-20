@@ -48,13 +48,13 @@ export type ChatCover = {
 }
 
 export type Book = {
-  driverName: string
-  maxAvailableSeats: number
-  reservedPassengers: number
-  startingTime: Date
-  to: string // drop off
-  from: string // pick up
-  status: RideStatusBruh // 'Cancelled'
+  name: string
+  max_available_seats: number
+  reserved_passengers: number
+  starting_time: Date
+  pickup_location: string
+  dropoff_location: string
+  booking_status: RideStatusBruh
 }
 
 export type RideCardo = {
