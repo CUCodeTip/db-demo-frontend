@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import dumbInfo from '../../dumbRides'
 import { useFindRideStore } from '~/stores/findRideStore'
 import { formatDateTime } from '~/utils'
 const findRide = useFindRideStore()
 
 const book = () => {
-  // eslint-disable-next-line no-alert
-  alert(
-    `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
-  )
-  findRide.reset()
+  findRide.book(() => {
+    // eslint-disable-next-line no-alert
+    alert(
+      `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
+    )
+    findRide.reset()
+  })
 }
 </script>
 
@@ -17,7 +18,9 @@ const book = () => {
   <section>
     <div class="flex items-center space-x-4">
       <h2 class="mb-3">
-        Results <span class="font-normal">({{ dumbInfo.length }})</span>
+        Results <span class="font-normal">
+          ({{ findRide.matchedRides?.length }})
+        </span>
       </h2>
       <span v-if="findRide.selectedRide">
         Booking a ride from
@@ -48,7 +51,6 @@ const book = () => {
       </li>
     </ol>
     <button
-      v-show="dumbInfo"
       class="button block mt-3 ml-auto"
       :disabled="!findRide.selectedRide"
       @click="book"

@@ -85,6 +85,33 @@ export const useFindRideStore = defineStore('findRide', () => {
     }).json<MatchedRide[]>()
   }
 
+  /**
+   * book the selected ride
+   * @param onSuccess runs if the ride is successfully booked
+   * @param onError runs if there is an error
+   */
+  const book = (
+    onSuccess: () => void = () => {},
+    onError: () => void = () => {},
+  ) => {
+    fetchy('genBook', {
+      afterFetch(ctx) {
+        onSuccess()
+        return ctx
+      },
+      onFetchError(ctx) {
+        onError()
+        return ctx
+      },
+    }).post({
+      driver_id: selectedRide.value?.driver_id,
+      starting_time: selectedRide.value?.starting_time,
+      pickup_location: startLocation.value,
+      dropoff_location: destinationLocation.value,
+      seat: availableSeats.value,
+    })
+  }
+
   return {
     startLocation,
     destinationLocation,
@@ -99,6 +126,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     toggleRide,
     isRideSelected,
     find,
+    book,
   }
 })
 
