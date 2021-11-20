@@ -53,8 +53,11 @@ export const useFindRideStore = defineStore('findRide', () => {
     selectedRide.value = { driver_id, starting_time }
   }
 
+  /**
+   * Find the rides that match the user's search criteria
+   * @param onNotFound runs if there are no matched rides or error
+   */
   const find = (onNotFound: () => void = () => {}) => {
-    // TODO: call api to find rides
     fetchy('', {
       afterFetch(ctx) {
         if (!ctx.data) { // if the result is an empty array, no matched rides
