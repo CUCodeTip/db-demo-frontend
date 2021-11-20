@@ -36,7 +36,7 @@ onMounted(() => {
         class="bg-gray-700 rounded-xl p-4"
       >
         <book-card
-          :driver="book.name"
+          :driver-name="book.name"
           :from="book.pickup_location"
           :to="book.dropoff_location"
           :date-time="book.starting_time"

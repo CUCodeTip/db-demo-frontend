@@ -3,7 +3,7 @@ import fetchy from '~/fetchy'
 import { RideStatusBruh } from '~/types'
 
 const props = defineProps<{
-  driver: string
+  driverName: string
   maxPassengers: number
   passengers: number
   dateTime: Date
@@ -11,7 +11,7 @@ const props = defineProps<{
   to: string
   status: RideStatusBruh
   refetchBooks: (throwOnFailed?: boolean | undefined) => Promise<any>
-  bookId: string
+  bookId: number
 }>()
 
 const cancelBook = () => {
@@ -32,7 +32,7 @@ const cancelBook = () => {
     <div class="flex-grow space-y-4">
       <div>
         <h2 class="mb-2 font-medium">
-          {{ driver }}'s Ride
+          {{ driverName }}'s Ride
         </h2>
         <div class="space-y-1 font-light">
           <span class="hello-there">
