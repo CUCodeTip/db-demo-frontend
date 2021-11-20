@@ -114,6 +114,7 @@ export const useFindRideStore = defineStore('findRide', () => {
       pickup_location: startLocation.value,
       dropoff_location: destinationLocation.value,
       seat: availableSeats.value,
+      passenger_id: uStore.loggedInUser?.user_id,
     })
   }
 
