@@ -39,6 +39,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     startDate.value = defaultDate
     endDate.value = defaultDate
     selectedRide.value = null
+    matchedRides.value = null
   }
 
   const isRideSelected = (driver_id: number, starting_time: Date) => {

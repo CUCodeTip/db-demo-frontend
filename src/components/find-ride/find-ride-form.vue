@@ -20,6 +20,7 @@ const find = () => {
         <span class="text-xl">Start Location</span>
         <input
           v-model="findRide.startLocation"
+          :disabled="findRide.matchedRides !== null"
           class="ipt"
           placeholder="Location"
         >
@@ -28,6 +29,7 @@ const find = () => {
         <span class="text-xl">Destination Location</span>
         <input
           v-model="findRide.destinationLocation"
+          :disabled="findRide.matchedRides !== null"
           class="ipt"
           placeholder="Location"
         >
@@ -36,6 +38,7 @@ const find = () => {
         <span class="text-xl">Available Seats</span>
         <input
           v-model="findRide.availableSeats"
+          :disabled="findRide.matchedRides !== null"
           class="ipt"
           type="number"
           min="1"
@@ -47,6 +50,7 @@ const find = () => {
         <span class="text-xl">Start Date</span>
         <input
           v-model="findRide.startDate"
+          :disabled="findRide.matchedRides !== null"
           class="ipt"
           type="date"
         >
@@ -55,6 +59,7 @@ const find = () => {
         <span class="text-xl">End Date</span>
         <input
           v-model="findRide.endDate"
+          :disabled="findRide.matchedRides !== null"
           class="ipt"
           type="date"
         >
@@ -69,7 +74,9 @@ const find = () => {
         </button>
         <button
           class="button h-full"
-          :disabled="!findRide.startLocation || !findRide.destinationLocation"
+          :disabled="!findRide.startLocation
+            || !findRide.destinationLocation
+            || findRide.matchedRides !== null"
           @click="find"
         >
           search
