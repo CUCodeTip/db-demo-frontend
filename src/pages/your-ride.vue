@@ -17,7 +17,7 @@ const { data: rides, execute: getRides } = fetchy('rides', {
     })
     return ctx
   },
-}).post({ id: uStore.loggedInUser!.user_id }).json<RideCardo[]>()
+}).post({ id: uStore.loggedInUser?.user_id }).json<RideCardo[]>()
 
 onMounted(() => {
   getRides()
