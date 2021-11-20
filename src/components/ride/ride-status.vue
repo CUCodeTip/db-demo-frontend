@@ -19,7 +19,7 @@ const color = rideStatusToClass[props.status]
 </script>
 
 <template>
-  <span :class="[color, 'text-xl']">
+  <span :class="[color, 'text-xl', 'capitalize']">
     {{ props.status }}
   </span>
 </template>
