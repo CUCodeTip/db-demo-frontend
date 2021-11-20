@@ -26,22 +26,6 @@ export const useFindRideStore = defineStore('findRide', () => {
 
   const matchedRides = ref<null | RideCardo[]>(null)
 
-  const setStartLocation = (location: string) => {
-    startLocation.value = location
-  }
-  const setDestinationLocation = (location: string) => {
-    destinationLocation.value = location
-  }
-  const setStartDate = (date: string) => {
-    startDate.value = date
-  }
-  const setEndDate = (date: string) => {
-    endDate.value = date
-  }
-  const setAvailableSeats = (number: number) => {
-    availableSeats.value = number
-  }
-
   const reset = () => {
     startLocation.value = ''
     destinationLocation.value = ''
@@ -78,11 +62,6 @@ export const useFindRideStore = defineStore('findRide', () => {
     defaultDate,
     areAllFieldsDefaults,
     matchedRides,
-    setStartLocation,
-    setDestinationLocation,
-    setStartDate,
-    setEndDate,
-    setAvailableSeats,
     reset,
     toggleRide,
     isRideSelected,
