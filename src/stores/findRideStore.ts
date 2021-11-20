@@ -1,9 +1,12 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { useUserStore } from './user'
 import fetchy from '~/fetchy'
 import { MatchedRide } from '~/types'
 import { getDateAsInput } from '~/utils'
 
 export const useFindRideStore = defineStore('findRide', () => {
+  const uStore = useUserStore()
+
   const defaultDate = getDateAsInput(new Date())
 
   const startLocation = ref('')
@@ -83,6 +86,7 @@ export const useFindRideStore = defineStore('findRide', () => {
       startingTime: startDate.value,
       endTime: endDate.value,
       requestSeats: availableSeats.value,
+      userId: uStore.loggedInUser?.user_id,
     }).json<MatchedRide[]>()
   }
 
