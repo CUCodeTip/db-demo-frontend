@@ -46,7 +46,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     return selectedRide.value?.driver_id === driver_id
       && selectedRide.value?.starting_time === starting_time
   }
-  const toggleRide = (ride: MatchedRide) => {
+  const toggleSelectMatchedRide = (ride: MatchedRide) => {
     if (isRideSelected(ride.driver_id, ride.starting_time)) {
       selectedRide.value = null
       return
@@ -97,11 +97,11 @@ export const useFindRideStore = defineStore('findRide', () => {
   ) => {
     fetchy('genBook', {
       afterFetch(ctx) {
+        if (ctx.response.status !== 200) {
+          onError()
+          return ctx
+        }
         onSuccess()
-        return ctx
-      },
-      onFetchError(ctx) {
-        onError()
         return ctx
       },
     }).post({
@@ -124,7 +124,7 @@ export const useFindRideStore = defineStore('findRide', () => {
     areAllFieldsDefaults,
     matchedRides,
     reset,
-    toggleRide,
+    toggleSelectMatchedRide,
     isRideSelected,
     find,
     book,

@@ -10,6 +10,9 @@ const book = () => {
       `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
     )
     findRide.reset()
+  }, () => {
+    // eslint-disable-next-line no-alert
+    alert('Failed to book the ride.')
   })
 }
 </script>
@@ -47,7 +50,7 @@ const book = () => {
           :reserved-passengers="ride.reserved_passengers"
           :from="ride.from"
           :to="ride.to"
-          @click="findRide.toggleRide(ride)"
+          @click="findRide.toggleSelectMatchedRide(ride)"
         />
       </li>
     </ol>
