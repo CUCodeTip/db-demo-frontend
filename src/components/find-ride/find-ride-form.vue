@@ -21,7 +21,7 @@ const areThereMatchedRides = computed(() => findRide.matchedRides !== null)
       :class="{ 'opacity-50': areThereMatchedRides }"
     >
       <div class="ipt-container">
-        <span class="text-xl">Start Location</span>
+        <span class="text-xl">Pickup Location</span>
         <input
           v-model="findRide.startLocation"
           :disabled="areThereMatchedRides"
@@ -30,7 +30,7 @@ const areThereMatchedRides = computed(() => findRide.matchedRides !== null)
         >
       </div>
       <div class="ipt-container">
-        <span class="text-xl">Destination Location</span>
+        <span class="text-xl">Drop Off Location</span>
         <input
           v-model="findRide.destinationLocation"
           :disabled="areThereMatchedRides"
@@ -54,7 +54,7 @@ const areThereMatchedRides = computed(() => findRide.matchedRides !== null)
         class="ipt-container"
         :class="{ 'opacity-50': areThereMatchedRides }"
       >
-        <span class="text-xl">Start Date</span>
+        <span class="text-xl">Date From</span>
         <input
           v-model="findRide.startDate"
           :disabled="areThereMatchedRides"
@@ -66,7 +66,7 @@ const areThereMatchedRides = computed(() => findRide.matchedRides !== null)
         class="ipt-container"
         :class="{ 'opacity-50': areThereMatchedRides }"
       >
-        <span class="text-xl">End Date</span>
+        <span class="text-xl">Date To</span>
         <input
           v-model="findRide.endDate"
           :disabled="areThereMatchedRides"
