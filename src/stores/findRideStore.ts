@@ -61,7 +61,7 @@ export const useFindRideStore = defineStore('findRide', () => {
   const find = (onNotFound: () => void = () => {}) => {
     fetchy('find-ride', {
       afterFetch(ctx) {
-        if (!ctx.data) { // if the result is an empty array, no matched rides
+        if (!ctx.data.length) { // if the result is an empty array, no matched rides
           onNotFound()
           return ctx
         }
