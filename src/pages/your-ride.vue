@@ -23,7 +23,7 @@ onMounted(() => {
     >
       <li
         v-for="ride in yourRide.rides"
-        :key="ride.starting_time.getMilliseconds()"
+        :key="ride.starting_time.getTime()"
         class="bg-gray-700 rounded-xl p-4"
       >
         <ride-card
