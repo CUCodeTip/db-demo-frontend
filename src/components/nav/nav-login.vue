@@ -3,11 +3,13 @@ import { navItemOptToRoute } from './types'
 import useIdleEmoji from '~/composables/idleEmoji'
 import { useControlStore } from '~/stores/control'
 import { useUserStore } from '~/stores/user'
+import { useFindRideStore } from '~/stores/findRideStore'
 
 const { emoji } = useIdleEmoji()
 const uStore = useUserStore()
 const router = useRouter()
 const control = useControlStore()
+const findRide = useFindRideStore()
 
 const usernameInput = ref<null | HTMLInputElement>(null)
 const username = ref<number | null>(null)
@@ -19,10 +21,12 @@ const buttonDisabled = computed(
 
 const login = () => {
   if (buttonDisabled.value) return
+  // eslint-disable-next-line no-alert
   uStore.login(username.value!, () => { alert('Login failed') }, () => {
     username.value = null
     usernameInput.value?.blur()
     control.activeItem = 'Find Ride'
+    findRide.reset()
     router.push(navItemOptToRoute[control.activeItem])
   })
 }
