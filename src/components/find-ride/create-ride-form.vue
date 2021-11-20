@@ -1,16 +1,40 @@
 <script setup lang="ts">
+import fetchy from '~/fetchy'
 import { useUserStore } from '~/stores/user'
+import { useYourRideStore } from '~/stores/yourRide'
 import { getDateAsInput } from '~/utils'
 
 const uStore = useUserStore()
+const yourRide = useYourRideStore()
 
 const startLocation = ref('')
 const destinationLocation = ref('')
-const availableSeats = ref(uStore.loggedInUser?.capacity ?? 1)
+const route = computed(() => `${startLocation.value}, ${destinationLocation.value}`)
+const availableSeats = ref(uStore.loggedInUser?.vehicle_capacity ?? 1)
 const startDate = ref(getDateAsInput(new Date()))
 
 const createRide = () => {
-  //
+  fetchy('rides/create', {
+    afterFetch(ctx) {
+      if (ctx.response.status === 200) {
+        yourRide.getRides()
+        // eslint-disable-next-line no-alert
+        alert('Your ride has been created!')
+      }
+
+      else {
+      // eslint-disable-next-line no-alert
+        alert('Something went wrong.')
+      }
+      return ctx
+    },
+  }).post({
+    driverName: uStore.loggedInUser?.name,
+    driverId: uStore.loggedInUser?.driver_id,
+    startingTime: startDate.value,
+    route: route.value,
+    maxSeats: availableSeats.value,
+  })
 }
 </script>
 
@@ -44,7 +68,7 @@ const createRide = () => {
         type="number"
         class="ipt"
         min="1"
-        :max="uStore.loggedInUser?.capacity ?? undefined"
+        :max="uStore.loggedInUser?.vehicle_capacity ?? undefined"
       >
     </div>
     <div class="ipt-container w-100">
