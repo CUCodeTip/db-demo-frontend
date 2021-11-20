@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user'
 import { ChatCard } from '~/types'
+
 const props = defineProps<{
   chat: ChatCard
 }>()
 
+const uStore = useUserStore()
+
+// This is the chat of your own ride?
+const isChatYours = uStore.loggedInUser?.user_id === props.chat.driver_id
 const recentMessageTime = props.chat.recentMessage?.createAt
   ? `${String(new Date(props.chat.recentMessage.createAt).getHours()).padStart(2, '0')}:${
     String(new Date(props.chat.recentMessage.createAt).getMinutes()).padStart(2, '0')}`
@@ -18,8 +24,11 @@ const recentMessageTime = props.chat.recentMessage?.createAt
     >
     <div class="space-y-3 flex-grow">
       <div class="flex items-center justify-between">
-        <h4 class="font-semibold text-2xl flex-grow">
-          {{ chat.title }}'s Ride
+        <h4
+          class="font-semibold text-2xl flex-grow"
+          :class="{ 'text-orange-500': isChatYours }"
+        >
+          {{ isChatYours ? 'Your' : chat.driver_name + '\'s' }} Ride
         </h4>
         <div class="flex items-center justify-center gap-3">
           <formatted-date :date="chat.starting_time" />

@@ -46,7 +46,8 @@ export type RecentMessage = {
 
 export type ChatCard = {
   chat_id: string
-  title: string
+  driver_name: string
+  driver_id: number
   starting_time: Date
   max_available_seats: number
   reserved_passengers: number
