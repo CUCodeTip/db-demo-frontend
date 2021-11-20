@@ -36,16 +36,21 @@ export type User = {
   capacity: number | null // the max number of passengers, driver
 }
 
-export type ChatCover = {
-  profile: string
-  driverName: string
-  latestMessage: {
-    text: string
-    timestamp: Date
-  }
-  rideStartDate: Date
-  maxAvailableSeats: number
-  reservedPassengers: number
+export type RecentMessage = {
+  senderId: string
+  senderName: string
+  message: string
+  _id: string
+  createAt?: Date
+}
+
+export type ChatCard = {
+  chat_id: string
+  title: string
+  starting_time: Date
+  max_available_seats: number
+  reserved_passengers: number
+  recentMessage?: RecentMessage
 }
 
 export type Book = {

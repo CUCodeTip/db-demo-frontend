@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import dumbChats from '~/dumbChats'
-
-// TODO query the chats of this user
 import fetchy from '~/fetchy'
-// import { useUserStore } from '~/stores/user'
-import { ChatCoverCard } from '~/types'
+import { useUserStore } from '~/stores/user'
+import { ChatCard } from '~/types'
 
-// const uStore = useUserStore()
+const uStore = useUserStore()
 
-// 'api/chat?userId=${uStore.loggedInUser}'
 const {
   data: chatCovers,
   execute: getChatCovers,
-} = fetchy('chat', { immediate: false }).json<ChatCoverCard[]>()
+} = fetchy('chat', {
+  immediate: false,
+  afterFetch(ctx) {
+    ctx.data = ctx.data.map((chatCover: any) => {
+      chatCover.starting_time = new Date(chatCover.starting_time)
+      return chatCover
+    })
+    return ctx
+  },
+}).post({
+  userId: uStore.loggedInUser?.user_id,
+}).json<ChatCard[]>()
 
 const getRickRolledLmao = () => {
   window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')
@@ -29,8 +36,8 @@ onMounted(() => {
     class="overflow-y-scroll pr-3 space-y-5 max-h-80vh"
   >
     <li
-      v-for="(chat, idx) in dumbChats /* chatCovers */"
-      :key="idx"
+      v-for="chat in chatCovers /* chatCovers */"
+      :key="chat.chat_id"
       class="bg-gray-700 rounded-xl p-4
         cursor-pointer hover:bg-orange-400"
       @click="getRickRolledLmao"
