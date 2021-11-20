@@ -39,7 +39,7 @@ const recentMessageTime = props.chat.recentMessage?.createAt
           />
         </div>
       </div>
-      <div class="flex opacity-80 justify-between">
+      <div v-show="chat.recentMessage" class="flex opacity-80 justify-between">
         <p class="w-4/5 flex flex-col whitespace-pre-wrap break-all">
           <span class="text-orange-400">{{ chat.recentMessage?.senderName }}: </span>
           <span class="whitespace-pre-wrap">
