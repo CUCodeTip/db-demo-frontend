@@ -4,7 +4,10 @@ import { useUserStore } from '~/stores/user'
 import { Ride } from '~/types'
 
 const uStore = useUserStore()
-const { data: rides, execute: getRides } = fetchy('rides', {
+const {
+  data: rides,
+  execute: getRides,
+} = fetchy(`rides?id=${uStore.loggedInUser?.user_id}`, {
   immediate: false,
   afterFetch(ctx) {
     ctx.data = ctx.data.map((ride: any) => {
@@ -17,7 +20,7 @@ const { data: rides, execute: getRides } = fetchy('rides', {
     })
     return ctx
   },
-}).post({ id: uStore.loggedInUser?.user_id }).json<Ride[]>()
+}).json<Ride[]>()
 
 onMounted(() => {
   getRides()
