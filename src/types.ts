@@ -32,7 +32,8 @@ export type User = {
   phone_number: string
   email: string | null
   money_amount: number
-  license_plate: string | null
+  license_plate: string | null // driver
+  capacity: number | null // the max number of passengers, driver
 }
 
 export type ChatCover = {

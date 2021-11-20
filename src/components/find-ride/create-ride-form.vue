@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user'
 import { getDateAsInput } from '~/utils'
+
+const uStore = useUserStore()
 
 const startLocation = ref('')
 const destinationLocation = ref('')
-const availableSeats = ref(1)
+const availableSeats = ref(uStore.loggedInUser?.capacity ?? 1)
 const startDate = ref(getDateAsInput(new Date()))
 
 const createRide = () => {
@@ -40,7 +43,8 @@ const createRide = () => {
         required
         type="number"
         class="ipt"
-        min="0"
+        min="1"
+        :max="uStore.loggedInUser?.capacity ?? undefined"
       >
     </div>
     <div class="ipt-container w-100">

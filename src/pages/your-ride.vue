@@ -26,7 +26,10 @@ onMounted(() => {
 
 <template>
   <div>
-    <create-ride-form class="mb-4" />
+    <h2 class="mb-3">
+      Create Ride
+    </h2>
+    <create-ride-form class="mb-6" />
     <h2 v-show="rides" class="mb-3">
       Results <span class="font-normal">({{ rides?.length }})</span>
     </h2>
