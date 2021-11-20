@@ -37,12 +37,17 @@ onMounted(() => usernameInput.value?.focus())
 <template>
   <div class="flex flex-col space-y-3">
     <span v-show="uStore.loggedInUser">
-      Logged in as
+      Welcome,
       <span
         class="
       font-semibold text-orange-500"
-      >{{ uStore.loggedInUser?.name }}</span>
+      >{{ uStore.loggedInUser?.name }}</span>!
       {{ emoji }}
+      <br />
+      As a
+      <span class="italic">
+        {{ uStore.loggedInUser?.vehicle_capacity ? 'Driver 🚗' : 'Passenger 🏃‍♀️' }}
+      </span>
     </span>
     <span
       v-show="!uStore.loggedInUser"

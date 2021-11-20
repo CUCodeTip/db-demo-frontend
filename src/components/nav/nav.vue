@@ -19,7 +19,7 @@ const uStore = useUserStore()
     }"
   >
     <nav-list />
-    <div class="px-5">
+    <div class="px-5 mb-6">
       <nav-login />
       <span class="mt-6 block opacity-60">CU CodeTip</span>
     </div>
