@@ -17,19 +17,21 @@ defineProps<{
 
 <template>
   <div
-    class="flex w-full justify-evenly items-center
+    class="flex w-full items-center gap-x-6 px-6
   bg-gray-700 rounded-full h-22 cursor-pointer"
     :class="{
       'bg-orange-500': findRide.isRideSelected(driverId, startingTime),
       'hover:bg-orange-300': !findRide.isRideSelected(driverId, startingTime),
     }"
   >
-    <div class="bruhslkdfjg2">
-      <span class="font-semibold">{{ driverName }}</span>
+    <div class="bruhslkdfjg2 flex-grow">
+      <span class="font-semibold truncate w-15ch">{{ driverName }}</span>
     </div>
-    <passengers-count :passengers="reservedPassengers" :max-passengers="maxAvailableSeats" />
-    <formatted-date :date="startingTime" />
-    <formatted-time :date="startingTime" />
+    <div class="flex space-x-3 w-20rem">
+      <passengers-count :passengers="reservedPassengers" :max-passengers="maxAvailableSeats" />
+      <formatted-date :date="startingTime" />
+      <formatted-time :date="startingTime" />
+    </div>
     <pin-from-to :from="from" :to="to" />
   </div>
 </template>

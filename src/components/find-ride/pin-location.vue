@@ -7,6 +7,6 @@ const props = defineProps<{
 <template>
   <div class="flex flex-col justify-center items-center space-y-1">
     <eva:pin-fill class="h-6 w-6" />
-    <span>{{ props.location }}</span>
+    <span class="w-15rem truncate text-center">{{ props.location }}</span>
   </div>
 </template>
