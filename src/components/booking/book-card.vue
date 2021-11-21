@@ -23,7 +23,7 @@ const cancelBook = () => {
         console.error(ctx.response)
       return ctx
     },
-  }).delete({ book_id: props.bookId })
+  }).delete({ bookingID: props.bookId })
 }
 </script>
 
