@@ -7,7 +7,7 @@ const book = () => {
   findRide.book(() => {
     // eslint-disable-next-line no-alert
     alert(
-      `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
+      `The ride from ${findRide.selectedRide!.name} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
     )
     findRide.reset()
   }, () => {
