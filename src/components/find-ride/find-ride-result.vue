@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { useControlStore } from '~/stores/control'
 import { useFindRideStore } from '~/stores/findRideStore'
 import { formatDateTime } from '~/utils'
+
 const findRide = useFindRideStore()
+const router = useRouter()
+const control = useControlStore()
 
 const book = () => {
   findRide.book(() => {
@@ -9,6 +13,8 @@ const book = () => {
     alert(
       `The ride from ${findRide.selectedRide!.name} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
     )
+    router.push('/your-booking')
+    control.activeItem = 'Your Booking'
     findRide.reset()
   }, () => {
     // eslint-disable-next-line no-alert
