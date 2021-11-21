@@ -8,7 +8,7 @@ const uStore = useUserStore()
   <nav
     class="
   min-h-screen py-10 fixed w-full
-  justify-between flex flex-col
+   flex flex-col
   rounded-tr-3rem rounded-br-3rem
   transition-all duration-1000 ease-in-out
   overflow-hidden
@@ -18,6 +18,10 @@ const uStore = useUserStore()
     }"
   >
     <nav-list />
+    <div
+      class="flex-0 transition-all duration-1000"
+      :class="{ 'flex-1': uStore.loggedInUser }"
+    ></div>
     <div class="mx-auto mb-6" :class="{ 'px-5': uStore.loggedInUser }">
       <nav-login />
       <span class="mt-6 block opacity-60">CU CodeTip</span>

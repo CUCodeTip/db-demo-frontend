@@ -19,6 +19,10 @@ const buttonDisabled = computed(
     && uStore.loggedInUser.user_id === username.value),
 )
 
+// watch(uStore.loggedInUser, () => {
+
+// })
+
 const login = () => {
   if (buttonDisabled.value) return
   // eslint-disable-next-line no-alert
@@ -36,7 +40,10 @@ onMounted(() => usernameInput.value?.focus())
 
 <template>
   <div class="flex flex-col space-y-3">
-    <span v-show="uStore.loggedInUser">
+    <span
+      class="opacity-0 transition-opacity delay-1000 duration-1000"
+      :class="{ 'opacity-100': uStore.loggedInUser }"
+    >
       Welcome,
       <span
         class="

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { NavItemOption } from './types'
+import { useUserStore } from '~/stores/user'
+
+const uStore = useUserStore()
 
 const props = defineProps<{
   active: boolean
@@ -20,7 +23,7 @@ const emitClick = () => {
   flex justify-center items-center
   transition-colors active:outline-none"
     :class="{
-      'bg-orange-500 cursor-auto': props.active,
+      'bg-orange-500 cursor-auto': props.active || !uStore.loggedInUser,
       'hover:bg-orange-300': !props.active,
     }"
     :disabled="props.active"
