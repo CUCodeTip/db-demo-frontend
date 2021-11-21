@@ -48,6 +48,8 @@ onMounted(() => usernameInput.value?.focus())
       <span class="italic">
         {{ uStore.loggedInUser?.vehicle_capacity ? 'Driver 🚗' : 'Passenger 🏃‍♀️' }}
       </span>
+      <br />
+      uid: {{ uStore.loggedInUser?.user_id }}
     </span>
     <span
       v-show="!uStore.loggedInUser"
