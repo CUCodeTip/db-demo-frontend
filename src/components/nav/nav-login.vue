@@ -53,8 +53,8 @@ onMounted(() => usernameInput.value?.focus())
     </span>
     <span
       v-show="!uStore.loggedInUser"
-      class="
-    text-3xl font-bold text-orange-500"
+      class="py-5
+    text-4xl font-bold text-orange-500"
     >
       Login
     </span>
@@ -67,7 +67,8 @@ onMounted(() => usernameInput.value?.focus())
         bg-transparent
         h-full px-3 w-2/3
         rounded-xl"
-        placeholder="username"
+        :class="{ 'w-20rem': !uStore.loggedInUser }"
+        placeholder="username (integer)"
         @keyup.enter="login"
       >
       <button
