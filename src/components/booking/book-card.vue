@@ -66,9 +66,3 @@ const cancelBook = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.hello-there {
-  @apply block flex space-x-2 items-center text-xl;
-}
-</style>
