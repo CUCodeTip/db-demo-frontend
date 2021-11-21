@@ -1,7 +1,12 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { useUserStore } from './user'
+import fetchy from '~/fetchy'
+import { MatchedRide } from '~/types'
 import { getDateAsInput } from '~/utils'
 
 export const useFindRideStore = defineStore('findRide', () => {
+  const uStore = useUserStore()
+
   const defaultDate = getDateAsInput(new Date())
 
   const startLocation = ref('')
@@ -18,26 +23,16 @@ export const useFindRideStore = defineStore('findRide', () => {
       && availableSeats.value === 1,
   )
 
-  const selectedRide = ref<null | {
-    driver: string
-    startTime: Date
-  }>(null)
+  /**
+   * Selected ride from the matched rides to be booked
+   */
+  const selectedRide = ref<null | MatchedRide>(null)
 
-  const setStartLocation = (location: string) => {
-    startLocation.value = location
-  }
-  const setDestinationLocation = (location: string) => {
-    destinationLocation.value = location
-  }
-  const setStartDate = (date: string) => {
-    startDate.value = date
-  }
-  const setEndDate = (date: string) => {
-    endDate.value = date
-  }
-  const setAvailableSeats = (number: number) => {
-    availableSeats.value = number
-  }
+  /**
+   * Will be populated with the matched rides after
+   * the user submits the find ride form
+   */
+  const matchedRides = ref<null | MatchedRide[]>(null)
 
   const reset = () => {
     startLocation.value = ''
@@ -47,18 +42,80 @@ export const useFindRideStore = defineStore('findRide', () => {
     startDate.value = defaultDate
     endDate.value = defaultDate
     selectedRide.value = null
+    matchedRides.value = null
   }
 
-  const isRideSelected = (driver: string, startTime: Date) => {
-    return selectedRide.value?.driver === driver
-    && selectedRide.value?.startTime === startTime
+  const isRideSelected = (driver_id: number, starting_time: Date) => {
+    return selectedRide.value?.driver_id === driver_id
+      && selectedRide.value?.starting_time === starting_time
   }
-  const toggleRide = (driver: string, startTime: Date) => {
-    if (isRideSelected(driver, startTime)) {
+  const toggleSelectMatchedRide = (ride: MatchedRide) => {
+    if (isRideSelected(ride.driver_id, ride.starting_time)) {
       selectedRide.value = null
       return
     }
-    selectedRide.value = { driver, startTime }
+    selectedRide.value = ride
+  }
+
+  /**
+   * Find the rides that match the user's search criteria
+   * @param onNotFound runs if there are no matched rides or error
+   */
+  const find = (onNotFound: () => void = () => {}) => {
+    fetchy('find-ride', {
+      afterFetch(ctx) {
+        if (!ctx.data.length) { // if the result is an empty array, no matched rides
+          onNotFound()
+          return ctx
+        }
+        matchedRides.value = ctx.data.map((ride: any) => {
+          const [from, to] = ride.route.split(', ')
+          ride.from = from
+          ride.to = to
+          delete ride.route
+          ride.starting_time = new Date(ride.starting_time)
+          return ride
+        })
+        return ctx
+      },
+      onFetchError(ctx) {
+        onNotFound()
+        return ctx
+      },
+    }).post({
+      startingTime: startDate.value,
+      endTime: endDate.value,
+      requestSeats: availableSeats.value,
+      userId: uStore.loggedInUser?.user_id,
+    }).json<MatchedRide[]>()
+  }
+
+  /**
+   * book the selected ride
+   * @param onSuccess runs if the ride is successfully booked
+   * @param onError runs if there is an error
+   */
+  const book = (
+    onSuccess: () => void = () => {},
+    onError: () => void = () => {},
+  ) => {
+    fetchy('bookRide', {
+      afterFetch(ctx) {
+        if (ctx.response.status !== 200) {
+          onError()
+          return ctx
+        }
+        onSuccess()
+        return ctx
+      },
+    }).post({
+      driver_id: selectedRide.value?.driver_id,
+      starting_time: selectedRide.value?.starting_time,
+      pickup_location: startLocation.value,
+      dropoff_location: destinationLocation.value,
+      seat: availableSeats.value,
+      passenger_id: uStore.loggedInUser?.user_id,
+    })
   }
 
   return {
@@ -70,14 +127,12 @@ export const useFindRideStore = defineStore('findRide', () => {
     selectedRide,
     defaultDate,
     areAllFieldsDefaults,
-    setStartLocation,
-    setDestinationLocation,
-    setStartDate,
-    setEndDate,
-    setAvailableSeats,
+    matchedRides,
     reset,
-    toggleRide,
+    toggleSelectMatchedRide,
     isRideSelected,
+    find,
+    book,
   }
 })
 

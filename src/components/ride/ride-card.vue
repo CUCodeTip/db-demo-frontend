@@ -2,7 +2,6 @@
 import { RideStatusBruh } from '~/types'
 
 defineProps<{
-  driver: string
   maxPassengers: number
   passengers: number
   dateTime: Date
@@ -39,9 +38,3 @@ defineProps<{
     </div>
   </div>
 </template>
-
-<style scoped>
-.hello-there {
-  @apply block flex space-x-2 items-center text-xl;
-}
-</style>

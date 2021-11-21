@@ -1,17 +1,45 @@
 <script setup lang="ts">
-import dumbChats from '~/dumbChats'
+import fetchy from '~/fetchy'
+import { useUserStore } from '~/stores/user'
+import { ChatCard } from '~/types'
+
+const uStore = useUserStore()
+
+const {
+  data: chatCovers,
+  execute: getChatCovers,
+} = fetchy('chat', {
+  immediate: false,
+  afterFetch(ctx) {
+    ctx.data = ctx.data.map((chatCover: any) => {
+      chatCover.starting_time = new Date(chatCover.starting_time)
+      return chatCover
+    })
+    return ctx
+  },
+}).post({
+  userId: uStore.loggedInUser?.user_id,
+}).json<ChatCard[]>()
+
 const getRickRolledLmao = () => {
   window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')
 }
+
+onMounted(() => {
+  getChatCovers()
+})
 </script>
 
 <template>
-  <ol class="overflow-y-scroll pr-3 space-y-5 max-h-80vh">
+  <ol
+    v-if="chatCovers"
+    class="overflow-y-scroll pr-3 space-y-5 max-h-80vh"
+  >
     <li
-      v-for="(chat, idx) in dumbChats"
-      :key="idx"
+      v-for="chat in chatCovers /* chatCovers */"
+      :key="chat.chat_id"
       class="bg-gray-700 rounded-xl p-4
-      cursor-pointer hover:bg-orange-400"
+        cursor-pointer hover:bg-orange-400"
       @click="getRickRolledLmao"
     >
       <chat-cover :chat="chat" />

@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import dumbInfo from '../../dumbRides'
 import { useFindRideStore } from '~/stores/findRideStore'
 import { formatDateTime } from '~/utils'
 const findRide = useFindRideStore()
 
 const book = () => {
-  alert(
-    `The ride from ${findRide.selectedRide!.driver} departing at ${formatDateTime(findRide.selectedRide!.startTime)} has been booked.`,
-  )
-  findRide.reset()
+  findRide.book(() => {
+    // eslint-disable-next-line no-alert
+    alert(
+      `The ride from ${findRide.selectedRide!.driver_id} departing at ${formatDateTime(findRide.selectedRide!.starting_time)} has been booked.`,
+    )
+    findRide.reset()
+  }, () => {
+    // eslint-disable-next-line no-alert
+    alert('Failed to book the ride.')
+  })
 }
 </script>
 
@@ -16,35 +21,40 @@ const book = () => {
   <section>
     <div class="flex items-center space-x-4">
       <h2 class="mb-3">
-        Results <span class="font-normal">({{ dumbInfo.length }})</span>
+        Results <span class="font-normal">
+          ({{ findRide.matchedRides?.length }})
+        </span>
       </h2>
       <span v-if="findRide.selectedRide">
         Booking a ride from
         <em class="text-orange-400">
-          {{ findRide.selectedRide.driver }}
+          {{ findRide.selectedRide.name }}
         </em> starting at
         <em class="text-orange-400">
-          {{ formatDateTime(findRide.selectedRide.startTime) }}
+          {{ formatDateTime(findRide.selectedRide.starting_time) }}
         </em></span>
     </div>
-    <ol class="space-y-2 h-120 overflow-y-scroll pr-3">
+    <ol
+      v-if="findRide.matchedRides"
+      class="space-y-2 h-120 overflow-y-scroll pr-3"
+    >
       <li
-        v-for="ride in dumbInfo"
-        :key="`${ride.driver}${ride.dateTime.getMilliseconds()}`"
+        v-for="ride in findRide.matchedRides"
+        :key="`${ride.driver_id}${ride.starting_time}`"
       >
         <ride-result
-          :driver="ride.driver"
-          :max-passengers="ride.maxPassengers"
-          :passengers="ride.passengers"
-          :date-time="ride.dateTime"
+          :driver-id="ride.driver_id"
+          :starting-time="ride.starting_time"
+          :driver-name="ride.name"
+          :max-available-seats="ride.max_available_seats"
+          :reserved-passengers="ride.reserved_passengers"
           :from="ride.from"
           :to="ride.to"
-          @click="findRide.toggleRide(ride.driver, ride.dateTime)"
+          @click="findRide.toggleSelectMatchedRide(ride)"
         />
       </li>
     </ol>
     <button
-      v-show="dumbInfo"
       class="button block mt-3 ml-auto"
       :disabled="!findRide.selectedRide"
       @click="book"
