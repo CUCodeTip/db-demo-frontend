@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { navItemOptToRoute } from './types'
 import useIdleEmoji from '~/composables/idleEmoji'
 import { useControlStore } from '~/stores/control'
 import { useUserStore } from '~/stores/user'
@@ -7,7 +6,6 @@ import { useFindRideStore } from '~/stores/findRideStore'
 
 const { emoji } = useIdleEmoji()
 const uStore = useUserStore()
-const router = useRouter()
 const control = useControlStore()
 const findRide = useFindRideStore()
 
