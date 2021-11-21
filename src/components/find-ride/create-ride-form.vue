@@ -14,6 +14,7 @@ const availableSeats = ref(uStore.loggedInUser?.vehicle_capacity ?? 1)
 const startDatetime = ref(getDatetimeAsInput(new Date()))
 
 const createRide = () => {
+  const ISODateTime = new Date(startDatetime.value)
   fetchy('rides/create', {
     afterFetch(ctx) {
       if (ctx.response.status === 200) {
@@ -31,7 +32,7 @@ const createRide = () => {
   }).post({
     driverName: uStore.loggedInUser?.name,
     driverId: uStore.loggedInUser?.driver_id,
-    startingTime: startDatetime.value,
+    startingTime: ISODateTime,
     route: route.value,
     maxSeats: availableSeats.value,
   })
