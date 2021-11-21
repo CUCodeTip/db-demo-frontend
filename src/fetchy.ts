@@ -1,7 +1,7 @@
 import { createFetch } from '@vueuse/core'
 
 /**
- * A custom useFetch instance with the base url, https://dumb-db-api.herokuapp.com/
+ * A custom useFetch instance with the base url, https://dumb-db-api.herokuapp.com/api/
  */
 const fetchy = createFetch({
   baseUrl: 'https://dumb-db-api.herokuapp.com/api/',
