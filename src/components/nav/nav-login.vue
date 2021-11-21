@@ -19,10 +19,6 @@ const buttonDisabled = computed(
     && uStore.loggedInUser.user_id === username.value),
 )
 
-// watch(uStore.loggedInUser, () => {
-
-// })
-
 const login = () => {
   if (buttonDisabled.value) return
   // eslint-disable-next-line no-alert
@@ -31,7 +27,6 @@ const login = () => {
     usernameInput.value?.blur()
     control.activeItem = 'Find Ride'
     findRide.reset()
-    router.push(navItemOptToRoute[control.activeItem])
   })
 }
 
@@ -76,6 +71,7 @@ onMounted(() => usernameInput.value?.focus())
         rounded-xl"
         :class="{ 'w-20rem': !uStore.loggedInUser }"
         placeholder="username (integer)"
+        min="1"
         @keyup.enter="login"
       >
       <button
