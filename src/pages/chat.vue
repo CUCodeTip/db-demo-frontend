@@ -15,9 +15,6 @@ const {
       chatCover.starting_time = new Date(chatCover.starting_time)
       return chatCover
     })
-    ctx.data.sort((a: ChatCard, b: ChatCard) => {
-      return b.starting_time.getTime() - a.starting_time.getTime()
-    })
     return ctx
   },
 }).post({
