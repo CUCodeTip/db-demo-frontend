@@ -4,6 +4,7 @@ import { User } from '~/types'
 
 export const useUserStore = defineStore('user', () => {
   const loggedInUser = ref<User | null>(null)
+  const isLoggingIn = ref(false)
 
   /**
    * Login the user if username exists in the database
@@ -20,18 +21,24 @@ export const useUserStore = defineStore('user', () => {
       afterFetch(ctx) {
         onSuccess()
         loggedInUser.value = ctx.data
+        isLoggingIn.value = false
         return ctx
       },
       onFetchError(ctx) {
         // 401 means login failed
         onFail()
         loggedInUser.value = null
+        isLoggingIn.value = false
         return ctx
+      },
+      beforeFetch() {
+        isLoggingIn.value = true
       },
     }).post({ userId: username }).json<User>()
   }
 
   return {
+    isLoggingIn,
     loggedInUser,
     login,
   }

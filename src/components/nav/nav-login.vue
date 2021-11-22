@@ -53,7 +53,7 @@ onMounted(() => usernameInput.value?.focus())
     </span>
     <span
       v-show="!uStore.loggedInUser"
-      class="py-5
+      class="py-5 relative
     text-4xl font-bold text-orange-500"
     >
       Login
@@ -80,7 +80,12 @@ onMounted(() => usernameInput.value?.focus())
         :disabled="buttonDisabled"
         @click="login"
       >
-        <span>Login</span>
+        <spinner
+          v-if="uStore.isLoggingIn"
+          size="small"
+          line-fg-color="#F97316"
+        />
+        <span v-else>Login</span>
       </button>
     </div>
   </div>
