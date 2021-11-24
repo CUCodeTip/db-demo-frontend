@@ -4,6 +4,7 @@ import { useYourRideStore } from '~/stores/yourRide'
 const yourRide = useYourRideStore()
 
 onMounted(() => {
+  yourRide.rides = [] // to fix the wrong color of ride status when it changes
   yourRide.getRides()
 })
 </script>
